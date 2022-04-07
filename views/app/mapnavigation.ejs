@@ -1,0 +1,245 @@
+<%- include('../partials/apphead.ejs') %>
+
+
+<%
+locations = [
+{
+    name:"porsche",
+    id:"b1_a15",
+    image:"/map/porsche.jpg",
+    long:"4.3 m",
+    boothno: "A15"
+},
+{
+    name:"subaru",
+    id:"b2_a16",
+    image:"/map/subaru.jpg",
+    long:"2.6 m",
+    boothno: "A16"
+},
+{
+    name:"lamina films digital",
+    id:"b2_a16",
+    image:"/map/lamina.jpg",
+    long:"4.3 m",
+    boothno: "B2"
+},
+{
+    name:"kia",
+    id:"b1_a15",
+    image:"/map/kia.svg",
+    long:"4.3 m",
+    boothno: "B1"
+},
+{
+    name:"hyundai",
+    id:"a13_a14",
+    image:"/map/hyundai.svg",
+    long:"4.3 m",
+    boothno: "A5"
+},
+{
+    name:"ห้องน้ำ A",
+    id:"ra",
+    image:"/map/toilet.svg",
+    long:"4.3 m",
+    boothno: "RA"
+},
+{
+    name:"ทางเข้า-ออกประตู 1",
+    id:"gate1",
+    image:"/map/door.svg",
+    long:"4.3 m",
+    boothno: "GATE 1"
+}
+] 
+
+
+var boothdetails = [
+{
+    id:"productdetail1",
+    logo: "/logo/kialogo.png",
+    name: "KIA",
+    boothno: "B1",
+    challenger: "1",
+    pcategory: "CARS",
+    contactname: "สุพรรณวรรณวง สมเกียรติ",
+    phone:"0832032123",
+    email:"example@gmail.com"
+}
+]
+
+%>
+
+
+<style>
+#spots circle , #redmark g{
+    opacity: 0;
+}
+.arrows-container::before{
+    position: absolute;
+    display: block;
+    height: 100px;
+    width: 100%;
+    height: 100px;
+    content: " ";
+    background-color: #4F76B1;
+}
+.arrows-container
+{
+    clip-path: polygon(0 0, 100% 16%, 100% 84%, 0% 100%);
+  position: relative;
+  min-width: 1000px!important;
+
+  /* overflow: hidden; */
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* padding-bottom: 10px; */
+  /* padding-top: 10px; */
+
+}
+#brandlogo,#boothno{
+    pointer-events: none;
+}
+.arrows {
+    clip-path: polygon(0 0, 100% 25%, 100% 75%, 0% 100%);
+  position: absolute;
+  animation: arrows 2s infinite linear;
+  width: auto;
+  left: -7ex;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.arrow{
+    clip-path: polygon(65% 0, 100% 50%, 65% 100%, 35% 100%, 70% 50%, 35% 0);
+    background-color: white;
+    display: block;
+    height: 70px;
+    width: 70px;
+}
+@keyframes arrows {
+  0%{left: -140px}
+  50%{left: -70px;}
+  100%{left: -0px;}
+}
+</style>
+<%
+var olddata
+
+
+%>
+<div class="d-flex flex-column w-100 bg-white position-relative" mapselection ">
+    <div class=" border bg-white position-relative" style="z-index: 3;">
+        <div class="input-group flex-nowrap shadow-none rounded-pill overflow-hidden align-items-center">
+            <span class="input-group-text border-0 bg-white d-none wh50 d-flex align-items-center justify-content-center" back><i class="text-main2 fa-solid fa-arrow-left  fs-h2"></i></span>
+            <span class="input-group-text border-0 bg-white wh50 d-flex align-items-center justify-content-center" show><i class="text-main2 fa-solid fa-location-dot  fs-h2"></i></span>
+            <input type="text" class="form-control shadow-none py-3 border-0 bg-white d-block" role="button" readonly placeholder="ค้นหาจุดหมายปลายทาง" aria-label="Username" aria-describedby="addon-wrapping" value="<%=olddata%>" locationpicker>
+            <span class="input-group-text border-0 bg-white wh50 d-flex align-items-center justify-content-center d-none" role="button" clearselect ><i class="text-main2 fa-solid fa-xmark fs-h2"></i></span>
+        </div>
+    </div>
+    <div class="selection d-none overflow-auto position-relative bg-white" locationlist style="height: calc(100vh - (120px + 0.55rem)); z-index: 2;">
+        <%locations.map((e)=>{%>
+            <a role="button" class="text-decoration-none text-dark d-flex border p-2 gap-3 align-items-center">
+                <div class="text-center">
+                    <div class="wh50 rounded-3 shadow-sm" style="background-image: url(<%=e.image%>); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+                    <div class="fs-small text-secondary "><%=e.long%></div>
+                </div>
+                <div>
+                    <div class="fs-normal fw-md text-uppercase" boothname id="<%=e.id%>"><%=e.name%></div>
+                    <div class="fs-normal text-secondary"><%=e.boothno%></div>
+                </div>
+                <div class="ms-auto">
+                  <div class="fs-h2 wh40 d-flex align-items-center justify-content-center text-secondary"><i class="fa-solid fa-up-right-from-square"></i></div>
+                </div>
+            </a>
+        <%});%>
+    </div>
+    <div class="w-100 overflow-auto position-absolute top-100 " id="map2d" style="background-color: #f2f2f2; height: calc(100vh - (120px + 0.5rem)); z-index: 0;">
+        <div class="col-lg-10 mx-auto"  style="min-width: 700px;">
+    <svg id="mapsvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 450"><defs><style>.ba{fill:#30486b;}.bb,.bc{fill:#fff;}.bd{fill:#5077b1;}.be{fill:#f2f2f2;}.bc{stroke:#aaa;stroke-miterlimit:10;stroke-width:.25px;}.bf{fill:#5076b2;}.bg{fill:#373535;font-family:Kanit-Medium, Kanit;font-size:11px;}.bh{fill:#5076b1;}.bi{fill:#ae3436;}.bj{fill:url(#d);}.bk{fill:#2a5da6;fill-rule:evenodd;}.bl{fill:#ea3438;}.bm{fill:#94acd0;}</style><linearGradient id="d" x1="238.5" y1="150.19" x2="238.5" y2="190.08" gradientTransform="matrix(1, 0, 0, 1, 0, 0)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#246bb2"/></linearGradient></defs><g id="bg"><rect class="be" width="500" height="400"/></g><g id="whitebox"><rect class="bc" x="51.75" y="83.39" width="47.65" height="98.24" rx="4.35" ry="4.35"/><rect class="bc" x="51.75" y="199.31" width="47.65" height="98.24" rx="4.35" ry="4.35"/><rect class="bc" x="51.75" y="315.24" width="243.53" height="50.84" rx="7.08" ry="7.08"/><rect class="bc" x="218.59" y="29.49" width="53.07" height="39.78" rx="2.92" ry="2.92"/><rect class="bc" x="136.76" y="29.49" width="69.41" height="39.78" rx="3.34" ry="3.34"/><rect class="bc" x="247.64" y="83.39" width="47.65" height="98.24" rx="4.35" ry="4.35"/><rect class="bc" x="247.64" y="199.31" width="47.65" height="98.24" rx="4.35" ry="4.35"/><rect class="bc" x="117.05" y="83.39" width="47.65" height="98.24" rx="4.35" ry="4.35"/><rect class="bc" x="117.05" y="199.31" width="47.65" height="98.24" rx="4.35" ry="4.35"/><rect class="bc" x="182.34" y="199.31" width="47.65" height="98.24" rx="4.35" ry="4.35"/><rect class="bc" x="313.36" y="83.39" width="64.31" height="98.24" rx="5.06" ry="5.06"/><rect class="bc" x="394.54" y="83.39" width="64.31" height="98.24" rx="5.06" ry="5.06"/><rect class="bc" x="313.36" y="199.31" width="64.31" height="166.76" rx="6.59" ry="6.59"/><rect class="bc" x="394.54" y="199.31" width="64.31" height="166.76" rx="6.59" ry="6.59"/><rect class="bc" x="182.34" y="83.39" width="47.65" height="98.24" rx="4.35" ry="4.35"/></g><g id="mylocation"><g><polygon class="bj" points="243.31 190.08 233.68 190.08 222.31 150.19 254.68 150.19 243.31 190.08"/><g><circle class="bm" cx="238.5" cy="190.08" r="11.23"/><circle class="bh" cx="238.5" cy="190.08" r="6.62"/><circle class="bb" cx="238.5" cy="190.08" r="4.82"/></g></g></g><g id="spots"><circle id="c17" class="bf" cx="427.54" cy="190.08" r="5.11"/><circle id="c16" class="bf" cx="407.18" cy="190.08" r="5.11"/><circle id="c15" class="bf" cx="385.66" cy="190.08" r="5.11"/><circle id="c14" class="bf" cx="365.3" cy="190.08" r="5.11"/><circle id="c13" class="bf" cx="344.94" cy="190.08" r="5.11"/><circle id="c12" class="bf" cx="324.58" cy="190.08" r="5.11"/><circle id="c11" class="bf" cx="304" cy="190.08" r="5.11"/><circle id="c10" class="bf" cx="282.31" cy="190.08" r="5.11"/><circle id="c9" class="bf" cx="260.62" cy="190.08" r="5.11"/><circle id="c8" class="bf" cx="217.01" cy="190.08" r="5.11"/><circle id="c7" class="bf" cx="195.32" cy="190.08" r="5.11"/><circle id="c6" class="bf" cx="173.3" cy="190.08" r="5.11"/><circle id="c5" class="bf" cx="151.61" cy="190.08" r="5.11"/><circle id="c4" class="bf" cx="129.92" cy="190.08" r="5.11"/><circle id="c3" class="bf" cx="108.22" cy="190.08" r="5.11"/><circle id="c2" class="bf" cx="87.6" cy="190.08" r="5.11"/><circle id="c1" class="bf" cx="66.97" cy="190.08" r="5.11"/><circle id="b1" class="bf" cx="173.52" cy="167.34" r="5.11"/><circle id="b2" class="bf" cx="173.52" cy="144.61" r="5.11"/><circle id="b3" class="bf" cx="173.52" cy="121.88" r="5.11"/><circle id="b4" class="bf" cx="173.52" cy="99.14" r="5.11"/><circle id="b5" class="bf" cx="173.52" cy="77" r="5.11"/><circle id="d1" class="bf" cx="238.5" cy="167.34" r="5.11"/><circle id="d2" class="bf" cx="238.5" cy="144.61" r="5.11"/><circle id="d3" class="bf" cx="238.5" cy="121.88" r="5.11"/><circle id="d4" class="bf" cx="238.5" cy="99.14" r="5.11"/><circle id="d5" class="bf" cx="238.5" cy="77" r="5.11"/><circle id="e6" class="bf" cx="238.7" cy="306.4" r="5.11"/><circle id="e5" class="bf" cx="238.81" cy="287.01" r="5.11"/><circle id="e4" class="bf" cx="238.81" cy="267.62" r="5.11"/><circle id="e3" class="bf" cx="238.81" cy="248.24" r="5.11"/><circle id="e2" class="bf" cx="238.81" cy="228.85" r="5.11"/><circle id="e1" class="bf" cx="238.81" cy="209.46" r="5.11"/></g><g id="boothno"><text class="bg" transform="translate(255.39 96.58)"><tspan x="0" y="0">B1</tspan></text><text class="bg" transform="translate(189.57 96.58)"><tspan x="0" y="0">B2</tspan></text><text class="bg" transform="translate(124.64 96.58)"><tspan x="0" y="0">B3</tspan></text><text class="bg" transform="translate(58.26 96.58)"><tspan x="0" y="0">B4</tspan></text><text class="bg" transform="translate(140.87 41.59)"><tspan x="0" y="0">GATE 1</tspan></text><text class="bg" transform="translate(223.98 41.27)"><tspan x="0" y="0">RA</tspan></text><text class="bg" transform="translate(255.39 215.05)"><tspan x="0" y="0">A15</tspan></text><text class="bg" transform="translate(320.37 215.05)"><tspan x="0" y="0">A14</tspan></text><text class="bg" transform="translate(399.35 215.05)"><tspan x="0" y="0">A11</tspan></text><text class="bg" transform="translate(57.59 329.02)"><tspan x="0" y="0">A19</tspan></text><text class="bg" transform="translate(320.37 96.58)"><tspan x="0" y="0">A13</tspan></text><text class="bg" transform="translate(399.35 96.58)"><tspan x="0" y="0">A12</tspan></text><text class="bg" transform="translate(189.57 215.05)"><tspan x="0" y="0">A16</tspan></text><text class="bg" transform="translate(124.64 215.05)"><tspan x="0" y="0">A17</tspan></text><text class="bg" transform="translate(58.26 215.05)"><tspan x="0" y="0">A18</tspan></text></g><g id="brandlogo"><g><rect class="ba" x="179.73" y="34.17" width="22.16" height="22.16" rx="1.06" ry="1.06"/><g><path class="bb" d="M184.73,51.55v-11.92c0-.09,.07-.16,.16-.16h2.27c.49,0,.89-.4,.89-.89h0c0-.49-.4-.89-.89-.89h-3.65c-.26,0-.46,.21-.46,.46v14.87c0,.26,.21,.46,.46,.46h3.65c.49,0,.89-.4,.89-.89h0c0-.49-.4-.89-.89-.89h-2.27c-.09,0-.16-.07-.16-.16Z"/><path class="bb" d="M189.49,37.49v16.2c0,.5,.47,.88,1,.81l7.34-1c.43-.06,.75-.4,.75-.81v-14.21c0-.41-.32-.75-.75-.81l-7.34-1c-.53-.07-1,.31-1,.81h0Zm7.02,14.42l-4.81,.58c-.23,.03-.43-.14-.43-.36v-13.05c0-.24,.23-.43,.48-.4l4.64,.56c.24,.03,.41,.22,.41,.44v11.91c0,.16-.12,.29-.29,.31h0Z"/><circle class="bb" cx="192.8" cy="45.29" r=".68"/></g></g><g><rect class="bd" x="243.01" y="33.63" width="23.83" height="23.83" rx=".85" ry=".85"/><g><path class="bb" d="M248.65,41.83c.97,0,1.73-.79,1.73-1.76s-.76-1.76-1.73-1.76-1.76,.79-1.76,1.76,.79,1.76,1.76,1.76Z"/><path class="bb" d="M249.58,42.32h-1.86c-1.23,0-2.24,1-2.24,2.24v3.47c0,.77,.55,1.41,1.27,1.55v4.06c0,.36,.29,.65,.65,.65h2.45c.37,0,.68-.3,.68-.68v-4.03c.73-.14,1.27-.78,1.27-1.55v-3.49c0-1.22-.99-2.22-2.22-2.22h0Z"/></g><g><path class="bb" d="M260.32,41.83c.97,0,1.73-.79,1.73-1.76s-.76-1.76-1.73-1.76-1.76,.79-1.76,1.76,.79,1.76,1.76,1.76Z"/><path class="bb" d="M264.12,49.55l-1.42-6.55c-.09-.4-.48-.68-.93-.68h-2.94c-.46,0-.85,.29-.93,.68l-1.42,6.55c-.11,.52,.34,1,.93,1h1v3.09c0,.36,.29,.65,.65,.65h2.45c.37,0,.68-.3,.68-.68v-3.06h1c.6,0,1.05-.48,.93-1h0Z"/></g><rect class="bb" x="253.64" y="38.31" width="1.66" height="15.97" rx=".62" ry=".62"/></g><image transform="translate(248.79 225.84) scale(.06)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649087809/motorexpo%20app/porsche_w2ys54.jpg"/><g id="ao"><g id="ap"><rect class="bb" x="321.01" y="105.21" width="49.6" height="49.6"/><path class="bk" d="M327.89,136.94h1.41v1.55h2.52v-1.55h1.39v4.34h-1.39v-1.83h-2.53v1.81h-1.39v-4.33h0Zm5.47,0h1.37l1.44,1.67,1.42-1.67h1.35l-2.09,2.66v1.69h-1.39v-1.81l-2.11-2.53h0Zm5.77,0h1.39v3.36h2.23c.35,0,.58-.35,.58-.72v-2.64h1.39v3.47c0,.54-.62,.86-.97,.86h-4.63v-4.33h0Zm5.89,0h4.63c.55,0,.98,.33,.98,1.01v3.32h-1.39v-2.63c0-.37-.12-.59-.6-.59h-2.09v3.24h-1.53v-4.35h0Zm6.03,0h4.05c.81,0,1.43,.65,1.43,1.15v2c0,.35-.5,1.2-1.12,1.2h-4.36v-4.34h0Zm1.42,3.38h2.14c.31,0,.55-.23,.55-.51v-1.27c0-.31-.25-.49-.58-.49h-2.1v2.27h0Zm5.78-3.4h4.34v4.36h-1.55v-1.13h-2.67v1.13h-1.57v-2.83c-.04-.95,.81-1.53,1.44-1.53h0Zm.1,1.55v.7h2.67v-1.11h-2.25c-.26,0-.42,.16-.42,.41h0Zm4.51-1.54h1.39v4.48h-1.39v-4.48Zm-16.8-20.23c-9.3,0-16.83,3.72-16.83,8.31s7.54,8.31,16.83,8.31,16.83-3.72,16.83-8.31-7.54-8.31-16.83-8.31h0Zm-1.6,1.85c1.92-.68,7.63,0,9.85,1.06,.71,.68-3.16,2.87-7.78,3.81-6.59,1.33-3.46-3.76-2.07-4.88h0Zm-11.33,9.85c-1.45-1.03-4.29-3.99,.41-7.07,2.48-1.45,3.87-1.77,5.59-2.13,.83-.18,1.42,.03,.68,.65-1.57,1.63-4.82,7.01-5.11,8.19-.24,.8-.71,1-1.57,.35h0Zm13.54,3.43c-2.78,.29-8.96-.62-9.08-1.42,.12-1.92,9.82-5.12,11.56-3.34,.74,1.39-.68,4.67-2.48,4.76h0Zm14.14-5.59c-.71,1.63-3.1,3.46-8.13,4.7-.77,.18-1.04-.3-.53-.74,.83-.5,4.82-7.19,5.32-8.52,.3-.68,.86-.41,1.21-.15,1.6,1.03,2.81,2.72,2.13,4.7h0Z"/></g></g><image transform="translate(189.7 114.09) scale(.05)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649087805/motorexpo%20app/lamina_i49thx.jpg"/><image transform="translate(249.78 116.92) scale(.12)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649087803/motorexpo%20app/kia_a4ofta.png"/><image transform="translate(182.34 221.21) scale(.06)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649087811/motorexpo%20app/subaru_akd21f.jpg"/><image transform="translate(409.36 112.64) scale(.11)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649087802/motorexpo%20app/isuzu_glsgor.png"/><image transform="translate(323.78 255.83) scale(.14)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649087813/motorexpo%20app/volvo-logo-C0F7715FCB-seeklogo.com_jyb6uu.png"/><image transform="translate(404.71 253.46) scale(.12)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649087807/motorexpo%20app/nissan-flat-logo-design-sq-3_wwoghb.png"/><image transform="translate(121.18 115.12) scale(.14)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649088717/motorexpo%20app/lxmode_xgcrsh.jpg"/><image transform="translate(58.26 112.97) scale(.14)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649087806/motorexpo%20app/mzspeed_ed6nrg.png"/><image transform="translate(119.41 222.63) scale(.09)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649087815/motorexpo%20app/techart_wmok79.png"/><image transform="translate(56.28 229.28) scale(.07)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649087800/motorexpo%20app/brabus_h9wsrn.png"/><image transform="translate(134.77 330.11) scale(.16)" xlink:href="https://res.cloudinary.com/dxt5aujml/image/upload/v1649087799/motorexpo%20app/audi_kzhyf8.png"/></g><g id="redmark"><g id="b2_a16"><circle class="bi" cx="217" cy="173.63" r="4.95"/><path class="bl" d="M217.01,191.21c-2.03-1.73-3.92-3.63-5.63-5.68-2.57-3.08-5.63-7.65-5.63-12.02,0-2.23,.66-4.41,1.9-6.26,1.24-1.85,3-3.3,5.06-4.15,2.06-.85,4.32-1.08,6.51-.64,2.19,.44,4.19,1.51,5.77,3.09,1.05,1.04,1.88,2.29,2.45,3.65,.57,1.37,.85,2.83,.85,4.31,0,4.36-3.06,8.94-5.63,12.02-1.72,2.05-3.6,3.95-5.63,5.68Zm0-22.53c-1.28,0-2.51,.51-3.41,1.41-.91,.91-1.41,2.13-1.41,3.41s.51,2.51,1.41,3.41c.91,.91,2.13,1.41,3.41,1.41s2.51-.51,3.41-1.41,1.41-2.13,1.41-3.41-.51-2.51-1.41-3.41c-.91-.91-2.13-1.41-3.41-1.41Z"/></g><g id="gate1"><circle class="bi" cx="173.5" cy="59.43" r="4.95"/><path class="bl" d="M173.52,77c-2.03-1.73-3.92-3.63-5.63-5.68-2.57-3.08-5.63-7.65-5.63-12.02,0-2.23,.66-4.41,1.9-6.26,1.24-1.85,3-3.3,5.06-4.15,2.06-.85,4.32-1.08,6.51-.64,2.19,.44,4.19,1.51,5.77,3.09,1.05,1.04,1.88,2.29,2.45,3.65,.57,1.37,.85,2.83,.85,4.31,0,4.36-3.06,8.94-5.63,12.02-1.72,2.05-3.6,3.95-5.63,5.68Zm0-22.53c-1.28,0-2.51,.51-3.41,1.41-.91,.91-1.41,2.13-1.41,3.41s.51,2.51,1.41,3.41c.91,.91,2.13,1.41,3.41,1.41s2.51-.51,3.41-1.41,1.41-2.13,1.41-3.41-.51-2.51-1.41-3.41c-.91-.91-2.13-1.41-3.41-1.41Z"/></g><g id="ra"><circle class="bi" cx="238.45" cy="59.43" r="4.95"/><path class="bl" d="M238.47,77c-2.03-1.73-3.92-3.63-5.63-5.68-2.57-3.08-5.63-7.65-5.63-12.02,0-2.23,.66-4.41,1.9-6.26,1.24-1.85,3-3.3,5.06-4.15,2.06-.85,4.32-1.08,6.51-.64,2.19,.44,4.19,1.51,5.77,3.09,1.05,1.04,1.88,2.29,2.45,3.65,.57,1.37,.85,2.83,.85,4.31,0,4.36-3.06,8.94-5.63,12.02-1.72,2.05-3.6,3.95-5.63,5.68Zm0-22.53c-1.28,0-2.51,.51-3.41,1.41-.91,.91-1.41,2.13-1.41,3.41s.51,2.51,1.41,3.41c.91,.91,2.13,1.41,3.41,1.41s2.51-.51,3.41-1.41,1.41-2.13,1.41-3.41-.51-2.51-1.41-3.41c-.91-.91-2.13-1.41-3.41-1.41Z"/></g><g id="a19"><circle class="bi" cx="238.94" cy="290.89" r="4.95"/><path class="bl" d="M238.96,308.47c-2.03-1.73-3.92-3.63-5.63-5.68-2.57-3.08-5.63-7.65-5.63-12.02,0-2.23,.66-4.41,1.9-6.26,1.24-1.85,3-3.3,5.06-4.15,2.06-.85,4.32-1.08,6.51-.64,2.19,.44,4.19,1.51,5.77,3.09,1.05,1.04,1.88,2.29,2.45,3.65,.57,1.37,.85,2.83,.85,4.31,0,4.36-3.06,8.94-5.63,12.02-1.72,2.05-3.6,3.95-5.63,5.68Zm0-22.53c-1.28,0-2.51,.51-3.41,1.41-.91,.91-1.41,2.13-1.41,3.41s.51,2.51,1.41,3.41c.91,.91,2.13,1.41,3.41,1.41s2.51-.51,3.41-1.41,1.41-2.13,1.41-3.41-.51-2.51-1.41-3.41c-.91-.91-2.13-1.41-3.41-1.41Z"/></g><g id="b4_a18"><circle class="bi" cx="87.58" cy="173.63" r="4.95"/><path class="bl" d="M87.6,191.21c-2.03-1.73-3.92-3.63-5.63-5.68-2.57-3.08-5.63-7.65-5.63-12.02,0-2.23,.66-4.41,1.9-6.26,1.24-1.85,3-3.3,5.06-4.15,2.06-.85,4.32-1.08,6.51-.64,2.19,.44,4.19,1.51,5.77,3.09,1.05,1.04,1.88,2.29,2.45,3.65,.57,1.37,.85,2.83,.85,4.31,0,4.36-3.06,8.94-5.63,12.02-1.72,2.05-3.6,3.95-5.63,5.68Zm0-22.53c-1.28,0-2.51,.51-3.41,1.41-.91,.91-1.41,2.13-1.41,3.41s.51,2.51,1.41,3.41c.91,.91,2.13,1.41,3.41,1.41s2.51-.51,3.41-1.41,1.41-2.13,1.41-3.41-.51-2.51-1.41-3.41c-.91-.91-2.13-1.41-3.41-1.41Z"/></g><g id="b1_a15"><circle class="bi" cx="282.29" cy="172.5" r="4.95"/><path class="bl" d="M282.31,190.08c-2.03-1.73-3.92-3.63-5.63-5.68-2.57-3.08-5.63-7.65-5.63-12.02,0-2.23,.66-4.41,1.9-6.26,1.24-1.85,3-3.3,5.06-4.15,2.06-.85,4.32-1.08,6.51-.64,2.19,.44,4.19,1.51,5.77,3.09,1.05,1.04,1.88,2.29,2.45,3.65,.57,1.37,.85,2.83,.85,4.31,0,4.36-3.06,8.94-5.63,12.02-1.72,2.05-3.6,3.95-5.63,5.68Zm0-22.53c-1.28,0-2.51,.51-3.41,1.41-.91,.91-1.41,2.13-1.41,3.41s.51,2.51,1.41,3.41c.91,.91,2.13,1.41,3.41,1.41s2.51-.51,3.41-1.41,1.41-2.13,1.41-3.41-.51-2.51-1.41-3.41c-.91-.91-2.13-1.41-3.41-1.41Z"/></g><g id="a13_a14"><circle class="bi" cx="344.93" cy="172.5" r="4.95"/><path class="bl" d="M344.94,190.08c-2.03-1.73-3.92-3.63-5.63-5.68-2.57-3.08-5.63-7.65-5.63-12.02,0-2.23,.66-4.41,1.9-6.26,1.24-1.85,3-3.3,5.06-4.15,2.06-.85,4.32-1.08,6.51-.64,2.19,.44,4.19,1.51,5.77,3.09,1.05,1.04,1.88,2.29,2.45,3.65,.57,1.37,.85,2.83,.85,4.31,0,4.36-3.06,8.94-5.63,12.02-1.72,2.05-3.6,3.95-5.63,5.68Zm0-22.53c-1.28,0-2.51,.51-3.41,1.41-.91,.91-1.41,2.13-1.41,3.41s.51,2.51,1.41,3.41c.91,.91,2.13,1.41,3.41,1.41s2.51-.51,3.41-1.41,1.41-2.13,1.41-3.41-.51-2.51-1.41-3.41c-.91-.91-2.13-1.41-3.41-1.41Z"/></g><g id="a12_a11"><circle class="bi" cx="427.53" cy="172.5" r="4.95"/><path class="bl" d="M427.54,190.08c-2.03-1.73-3.92-3.63-5.63-5.68-2.57-3.08-5.63-7.65-5.63-12.02,0-2.23,.66-4.41,1.9-6.26,1.24-1.85,3-3.3,5.06-4.15,2.06-.85,4.32-1.08,6.51-.64,2.19,.44,4.19,1.51,5.77,3.09,1.05,1.04,1.88,2.29,2.45,3.65,.57,1.37,.85,2.83,.85,4.31,0,4.36-3.06,8.94-5.63,12.02-1.72,2.05-3.6,3.95-5.63,5.68Zm0-22.53c-1.28,0-2.51,.51-3.41,1.41-.91,.91-1.41,2.13-1.41,3.41s.51,2.51,1.41,3.41c.91,.91,2.13,1.41,3.41,1.41s2.51-.51,3.41-1.41,1.41-2.13,1.41-3.41-.51-2.51-1.41-3.41c-.91-.91-2.13-1.41-3.41-1.41Z"/></g><g id="b3_a17"><circle class="bi" cx="151.59" cy="173.63" r="4.95"/><path class="bl" d="M151.61,191.21c-2.03-1.73-3.92-3.63-5.63-5.68-2.57-3.08-5.63-7.65-5.63-12.02,0-2.23,.66-4.41,1.9-6.26,1.24-1.85,3-3.3,5.06-4.15,2.06-.85,4.32-1.08,6.51-.64,2.19,.44,4.19,1.51,5.77,3.09,1.05,1.04,1.88,2.29,2.45,3.65,.57,1.37,.85,2.83,.85,4.31,0,4.36-3.06,8.94-5.63,12.02-1.72,2.05-3.6,3.95-5.63,5.68Zm0-22.53c-1.28,0-2.51,.51-3.41,1.41-.91,.91-1.41,2.13-1.41,3.41s.51,2.51,1.41,3.41c.91,.91,2.13,1.41,3.41,1.41s2.51-.51,3.41-1.41,1.41-2.13,1.41-3.41-.51-2.51-1.41-3.41c-.91-.91-2.13-1.41-3.41-1.41Z"/></g></g></svg>
+            
+        </div>
+    </div>
+
+</div>
+<div class="position-absolute bottom-0 w-100 pe-none" style="z-index: 4!important;">
+    <div class="d-flex justify-content-end p-4 pe-none">
+        <a snaptomylocation class="pe-auto text-decoration-none text-white bg-main2 shadow rounded-circle wh60 fs-icon-md d-flex justify-content-center align-items-center position-relative"  style="z-index: 1;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="26" viewBox="0 0 10 13" fill="none" transform="rotate(45)">
+                <path d="M0.549542 12.2576L5.17293 9.42914L9.79632 12.2576L5.17293 0.00104743L0.549542 12.2576Z" fill="white"  />
+            </svg>
+        </a>
+    </div>
+    <div class="d-flex gap-3 p-3 justify-content-center bg-white shadow d-none pe-auto" startnavigation>
+        <a class="text-decoration-none hover-bgmain2 py-2 px-4 px-lg-5  rounded-pill d-flex align-items-center gap-2 fs-h2 fw-normal" role="button" startarmap >
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="22" viewBox="0 0 14 16" ><path d="M13 10.6659V5.33262C12.9998 5.0988 12.938 4.86916 12.821 4.66672C12.704 4.46429 12.5358 4.29619 12.3333 4.17928L7.66667 1.51262C7.46397 1.39559 7.23405 1.33398 7 1.33398C6.76595 1.33398 6.53603 1.39559 6.33333 1.51262L1.66667 4.17928C1.46418 4.29619 1.29599 4.46429 1.17897 4.66672C1.06196 4.86916 1.00024 5.0988 1 5.33262V10.6659C1.00024 10.8998 1.06196 11.1294 1.17897 11.3318C1.29599 11.5343 1.46418 11.7024 1.66667 11.8193L6.33333 14.4859C6.53603 14.603 6.76595 14.6646 7 14.6646C7.23405 14.6646 7.46397 14.603 7.66667 14.4859L12.3333 11.8193C12.5358 11.7024 12.704 11.5343 12.821 11.3318C12.938 11.1294 12.9998 10.8998 13 10.6659Z"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1.17993 4.63867L6.99993 8.00534L12.8199 4.63867"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <path d="M7 14.72V8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Start AR
+        </a>
+        <a class="text-decoration-none hover-bgmain2 py-2 px-4 px-lg-5  rounded-pill d-flex align-items-center gap-2 fs-h2 fw-normal" role="button"  startpathfinding>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 10 13" ><path d="M0.549542 12.2576L5.17293 9.42914L9.79632 12.2576L5.17293 0.00104743L0.549542 12.2576Z" /></svg>
+            Start 
+        </a>
+    </div>
+   
+</div>
+
+<div class="position-absoliute pe-none" id="maparcontainer" style="z-index: 100!important; opacity: 0;">
+<div id="webgl" class="w-100 position-relative" style="z-index:1; height: calc(100vh - (120px + 0.5rem)); "></div>
+<div id="webcssrender" class="position-absolute left-0 w-100 pe-none bottom-0" style="z-index:2; height: calc(100vh - (120px + 0.5rem)); "></div>
+</div>
+
+<div id="toolbar" class="position-absolute pe-none bg-white left-0 w-100 shadow-lg" style="opacity: 0; bottom: -70px; z-index: 4;">
+    <div class="position-relative w-100 ">
+        <a closetoolbar role="button" class="pe-auto fs-icon text-main2 position-absolute text-decoration-none shadow-lg start-50 translate-middle d-block bg-white rounded-circle wh70 d-flex align-items-center justify-content-center" style="top: -50px;"><i class="fa-solid fa-xmark"></i></a>
+    </div>
+    <% boothdetails.map((e)=>{%> 
+    <div id="<%= e.id %>" menucontainer >
+        <div class="col-12 d-flex align-items-center border-bottom p-3 p-md-3">
+            <div class="wh80 wh90-md me-2 me-md-3">
+                <div style="padding-bottom: 100%; background-image: url(<%=e.logo%>); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+            </div>
+            <div class="col-9">
+                <div class="text-truncate fs-h3"><%= e.name %></div>
+            </div>
+        </div>
+        <div class="col-12 p-3 p-md-3">
+            <div class="d-flex flex-wrap gap-3">
+                <div class="col-12 d-flex flex-column">
+                    <div class="col-6 d-flex">
+                        <div class="col-6 fs-h4">Booth No. :</div>
+                        <div class="col-6 fs-h4 fw-normal"><%= e.boothno %></div>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <div class="col-6 fs-h4 ">Challenger :</div>
+                        <div class="col-6 fs-h4 fw-normal"><%= e.challenger %></div>
+                    </div>
+                    <div class="col-6 d-flex">
+                        <div class="col-6 fs-h4 ">Product Category :</div>
+                        <div class="col-6 fs-h4 fw-normal"><%= e.pcategory %></div>
+                    </div>
+                  
+                </div>
+                <div class="col-12 d-flex flex-column gap-2">
+                    <div class="fs-h4">Contact</div>
+                    <div href="/app/booth/dd" class="text-decoration-none d-flex gap-3 rounded-3">
+                        <div class="d-flex flex-column w-100 fs-normal">
+                            <!-- <div class=""> ข้อมูลผู้ติดต่อ</div> -->
+                            <div class="">ชื่อผู้ติดต่อ : <%= e.contactname %> </div>
+                            <div class="">เบอร์โทร : <%= e.phone %></div>
+                            <div class="">อีเมล : <%= e.email %></div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/app/booth/d/0" class="pe-auto col-12 col-md bg-main2 text-white d-flex align-items-center justify-content-center fs-h4 text-decoration-none gap-3 p-3 rounded-3">
+                    <div>อ่านต่อ</div>
+                 </a>
+            </div>
+        </div>
+    </div>
+    <% }) %>
+</div>
+
+<script src="/js/three/map.js" type="module"></script>
+<%- include('../partials/appfooter.ejs') %>

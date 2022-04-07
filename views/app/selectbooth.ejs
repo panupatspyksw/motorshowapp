@@ -1,0 +1,40 @@
+<%- include('../partials/apphead.ejs') %>
+
+
+<div class="d-flex flex-column position-relative position-relative">
+    <div class="col-12 top-0 start-0">
+        <div class="h50 d-flex bg-main2 gap-2 gap-md-3 align-items-center border px-3 text-white border-0">
+            <div class="col">
+                Booth / Company
+            </div>
+    
+            <div class="col-4 col-md-2 col-lg-1 text-end text-md-center ">
+                Booth No.
+            </div>
+        </div>
+    </div>
+    <div class="col-12 overflow-scroll d-block" style="min-height: calc(100vh - 120px);">
+        <div class="bg-white border-0 overflow-auto">
+            <ul class="list-unstyled ">
+                <%table.map((e,i)=>{%>
+                    <li class="hover-opacity">
+                        <a href="<%=path + i %>" class="d-flex gap-2 gap-md-3 align-items-center border p-3 text-decoration-none text-dark">
+                            <div class="cover col-2 col-md-2 col-lg-1">
+                                <div class="" style="padding-bottom: 100%;  background-image: url(<%=e.image%>); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+
+                            </div>
+                            <div class="col info d-flex flex-column">
+                                <div class="fs-h4 text-truncate text-uppercase"><%= e.name %></div>
+                            </div>
+                            <div class="cover col-2 col-md-2 col-lg-1  text-center">
+                                <div class="fs-h4  text-uppercase"><%= e.boothno %></div>
+                            </div>
+                        </a>
+              
+                    </li>
+                <%})%>
+            </ul>
+        </div>
+    </div>
+</div>
+<%- include('../partials/appfooter.ejs') %>

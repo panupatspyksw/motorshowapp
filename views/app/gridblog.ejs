@@ -1,0 +1,24 @@
+<%- include('../partials/apphead.ejs') %>
+
+<div class="col-12 bg-white overflow-hidden position-relative">
+  
+    <!-- <div class="header"></div> -->
+    <div class="d-flex" >
+        <div class="col-12 <%=table.gridtype%>  align-self-start" >
+            <% table?.content?.map((e,i)=>{%>
+            <a href="<%=table.path%><%=i%>" role="button" class="image col-12 text-decoration-none text-dark ">
+                <div class="cover pe-none">
+                    <div class="bg-dark img" style="padding-bottom:50%; background-image: url(<%=e.cover%>); background-position: center; background-size: cover; background-repeat: no-repeat;"></div>
+                </div>
+                <div class="info overflow-hidden col-12 d-block  d-flex flex-column  pe-none user-select-none">
+                    <div class="fs-h4 text-truncate fw-md title"><%= e.title %></div>
+                    <div class="fs-small text-truncate line2 des"><%= e.short %></div>
+                    <div class="fs-small  date"><%= e.date %></div>
+                </div>
+            </a>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/appfooter.ejs') %>

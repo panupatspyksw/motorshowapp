@@ -1,0 +1,238 @@
+<% var onlydata = false; %>
+<% if(!onlydata){%>
+<%- include('../partials/apphead.ejs') %>
+<% } %>
+<%
+var iconcc = `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 23 16" fill="none">
+    <path d="M20.2743 4.89605H19.3727C19.0421 4.89605 18.7716 5.16185 18.7716 5.48672V6.75667H17.7898V6.04786C17.7898 5.41781 17.2689 4.90589 16.6278 4.90589H15.5659L15.1852 3.70486C15.075 3.34061 14.7244 3.0945 14.3437 3.0945H13.2517V2.16911H13.8828C14.3837 2.16911 14.8346 1.8147 14.9047 1.33232C14.9948 0.721957 14.514 0.200195 13.9129 0.200195H7.42128C6.92038 0.200195 6.46957 0.554599 6.39945 1.03698C6.30928 1.64735 6.79015 2.16911 7.39122 2.16911H8.05241V3.0945H6.48961C6.04882 3.0945 5.65812 3.38983 5.54792 3.81315L5.2574 4.90589H4.57618C3.99514 4.90589 3.53431 5.36859 3.53431 5.92973V7.72144H2.11177V4.15771C2.11177 3.88206 1.81123 3.7147 1.5708 3.85253L0.24843 4.60071C0.148251 4.66963 0.078125 4.78776 0.078125 4.91574V6.87481C0.078125 6.9831 0.128215 7.09139 0.218376 7.1603L0.719273 7.53439C1.02983 7.76082 1.21015 8.12507 1.21015 8.49916V9.25719C1.21015 9.59191 1.07992 9.90693 0.849507 10.1432C0.699237 10.3007 0.619094 10.5074 0.619094 10.7142V13.3525C0.619094 13.4608 0.669184 13.5691 0.769363 13.638L1.54074 14.1893C1.78117 14.3567 2.11177 14.1893 2.11177 13.9038V10.5665H3.50426V12.2795C3.50426 12.8505 3.9751 13.3033 4.54613 13.3033H5.72824C6.33934 13.3033 6.87029 13.6872 7.06063 14.2582C7.29104 14.9375 7.93219 15.4002 8.6635 15.4002H15.646C16.8281 15.4002 17.7798 14.465 17.7798 13.3033V12.9981V11.5313H18.7616V14.7701C18.7616 15.1245 19.0521 15.4002 19.4027 15.4002H20.3144C20.7552 15.4002 21.1559 15.1541 21.3462 14.7603L22.1877 13.0473C22.3981 12.624 22.5083 12.1613 22.5083 11.6888V8.2432C22.5083 7.73128 22.358 7.22921 22.0675 6.8059L21.0757 5.31937C20.9154 5.06341 20.6049 4.89605 20.2743 4.89605Z" fill="#020202"/>
+    </svg>`;
+var icongear = `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 16" fill="none">
+    <path d="M12.0657 9.81273L9.21244 10.359L7.80536 5.44243C8.45027 4.82905 8.83135 3.93774 8.74341 2.96017C8.60661 1.53216 7.44382 0.372493 5.99765 0.219149C4.12154 0.0178849 2.53858 1.4459 2.53858 3.24769C2.53858 4.93447 3.93589 6.2954 5.64588 6.2954C5.68497 6.2954 5.72405 6.2954 5.76314 6.28582L7.04319 10.7615L3.94566 11.3558C2.90989 11.557 2.04024 12.2471 1.63961 13.1959L1.01424 14.6814C0.867669 15.0264 1.12173 15.4002 1.50281 15.4002H14.8994C15.3489 15.4002 15.7202 15.0456 15.7202 14.5951V12.755C15.7104 10.867 13.9516 9.44853 12.0657 9.81273Z" fill="black"/>
+    </svg>`;
+var iconhp = `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 23 16" fill="none">
+    <path d="M22.2487 6.81574L21.2676 5.32921C21.0892 5.06341 20.7919 4.89605 20.4649 4.89605H19.5729C19.2459 4.89605 18.9783 5.16185 18.9783 5.48672V6.75667H18.0071V6.04786C18.0071 5.41781 17.4918 4.90589 16.8576 4.90589H15.8071L15.4305 3.70486C15.3215 3.34061 14.9747 3.0945 14.5981 3.0945H13.5179V2.16911H14.1422C14.6377 2.16911 15.0837 1.8147 15.153 1.33232C15.2422 0.721957 14.7665 0.200195 14.1719 0.200195H7.75019C7.25468 0.200195 6.80873 0.554599 6.73936 1.03698C6.65017 1.64735 7.12585 2.16911 7.72046 2.16911H8.37453V3.0945H6.82855C6.39251 3.0945 6.00601 3.38983 5.897 3.81315L5.60961 4.90589H4.93572C4.36093 4.90589 3.90507 5.36859 3.90507 5.92973V7.72144H2.49783V4.15771C2.49783 3.88206 2.20053 3.7147 1.96269 3.85253L0.654556 4.60071C0.555455 4.66963 0.486084 4.78776 0.486084 4.91574V6.87481C0.486084 6.9831 0.535635 7.09139 0.624826 7.1603L1.12033 7.53439C1.42754 7.76082 1.60593 8.12507 1.60593 8.49916V9.25719C1.60593 9.5919 1.47709 9.90693 1.24916 10.1432C1.10051 10.3007 1.02123 10.5074 1.02123 10.7142V13.3525C1.02123 13.4608 1.07078 13.5691 1.16988 13.638L1.93296 14.1893C2.1708 14.3567 2.49783 14.1893 2.49783 13.9038V10.5665H3.87534V12.2795C3.87534 12.8505 4.34111 13.3033 4.90599 13.3033H6.07538C6.6799 13.3033 7.20513 13.6872 7.39343 14.2582C7.62136 14.9375 8.2556 15.4002 8.97904 15.4002H15.8864C17.0558 15.4002 17.9972 14.465 17.9972 13.3033V12.9981V11.5313H18.9684V14.7701C18.9684 15.1245 19.2558 15.4002 19.6027 15.4002H20.5045C20.9405 15.4002 21.3369 15.1541 21.5252 14.7603L22.3577 13.0473C22.5658 12.624 22.6748 12.1613 22.6748 11.6888V8.2432C22.6847 7.75097 22.5361 7.2489 22.2487 6.81574ZM13.0025 8.64683L10.0295 12.8701L10.6043 9.62144H9.0385L10.862 5.2603H13.3989L11.2187 8.64683H13.0025Z" fill="black"/>
+    </svg>`;
+var icondrive = `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 15 16" fill="none">
+    <path d="M12.4856 6.44499H13.1108C13.8566 6.44499 14.4488 5.8487 14.4488 5.12231V1.52288C14.4488 0.785644 13.8456 0.200195 13.1108 0.200195H12.4856C11.7399 0.200195 11.1476 0.796486 11.1476 1.52288V2.81303H9.2832C9.06386 2.05412 8.35098 1.50119 7.5065 1.50119C6.66202 1.50119 5.96011 2.05412 5.7298 2.81303H3.86536V1.52288C3.86536 0.785644 3.26216 0.200195 2.52735 0.200195H1.90222C1.15644 0.200195 0.564209 0.796486 0.564209 1.52288V5.12231C0.564209 5.85954 1.16741 6.44499 1.90222 6.44499H2.52735C3.27313 6.44499 3.86536 5.8487 3.86536 5.12231V3.83215H5.7298C5.89431 4.40676 6.34397 4.86211 6.91427 5.04641V10.554C6.34397 10.7383 5.89431 11.2045 5.7298 11.7682H3.86536V10.4781C3.86536 9.74085 3.26216 9.1554 2.52735 9.1554H1.90222C1.15644 9.1554 0.564209 9.75169 0.564209 10.4781V14.0775C0.564209 14.8147 1.16741 15.4002 1.90222 15.4002H2.52735C3.27313 15.4002 3.86536 14.8039 3.86536 14.0775V12.7874H5.7298C5.94915 13.5463 6.66202 14.0992 7.5065 14.0992C8.35098 14.0992 9.05289 13.5463 9.2832 12.7874H11.1476V14.0775C11.1476 14.8147 11.7508 15.4002 12.4856 15.4002H13.1108C13.8566 15.4002 14.4488 14.8039 14.4488 14.0775V10.4781C14.4488 9.74085 13.8456 9.1554 13.1108 9.1554H12.4856C11.7399 9.1554 11.1476 9.75169 11.1476 10.4781V11.7682H9.2832C9.11869 11.1936 8.66903 10.7383 8.09873 10.554V5.04641C8.66903 4.86211 9.11869 4.39591 9.2832 3.83215H11.1476V5.12231C11.1476 5.8487 11.7508 6.44499 12.4856 6.44499Z" fill="#111111"/>
+    </svg>`;
+%>
+<% var carcolors = [
+{
+    image:"/media/Arder_Green.webp",
+    colorcode:"#7F7E6B",
+    colorname:"Arden Green",
+},
+{
+    image:"/media/Platinum-White.webp",
+    colorcode:"#646C72",
+    colorname:"Platinum White",
+},
+{
+    image:"/media/Ming-Blue.webp",
+    colorcode:"#082848",
+    colorname:"Ming Blue",
+},
+{
+    image:"/media/Kermit-Green.webp",
+    colorcode:"#3C672D",
+    colorname:"Kermit Green",
+},
+{
+    image:"/media/Seychelles_Blue.webp",
+    colorcode:"#2C374E",
+    colorname:"Seychelles Blue",
+},
+{
+    image:"/media/Frosted-Glass-Yellow.webp",
+    colorcode:"#726D2D",
+    colorname:"Frosted Glass Yellow",
+},
+{
+    image:"/media/Spirit-Silver.webp",
+    colorcode:"#626B73",
+    colorname:"Spirit Silver",
+},
+{
+    image:"/media/232_Ultramarine-Black_2d363f.webp",
+    colorcode:"#202B29",
+    colorname:"Ultramarine Black",
+},
+{
+    image:"/media/Liquid-Crimson.webp",
+    colorcode:"#140405",
+    colorname:"Liquid Crimson",
+},
+]
+%>
+
+<div class="row col-12  mx-auto bg-white">
+    <div class="col-12 cover position-relative bg-dark">
+        <div class="col-12 col-md-8 mx-auto position-relative">
+            <div class="image bg-dark overflow-hidden  position-relative" style="padding-bottom: 50%; background-image: url(/cars/astonmartin/640_2020050615054354.jpg); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+        </div>
+        <div class="position-absolute d-flex align-items-end h-100 p-3 bottom-0 end-0 justify-content-end w-100 fs-h1 gap-2">
+            <a class="text-decoration-none wh50 bg-white text-main3 d-flex justify-content-center align-items-center rounded-circle saved"><i class="fa-solid fa-heart"></i></a>
+            <a href="3/gallery" class="text-decoration-none wh50 bg-white text-main2 d-flex justify-content-center align-items-center rounded-circle"><i class="fa-solid fa-images"></i></a>
+        </div>
+    </div>
+    <div class="col-12 d-flex align-items-center border-bottom p-3 p-md-3">
+        <div class="wh80 wh90-md me-2 me-md-3">
+            <div style="padding-bottom: 100%; background-image: url(/carbrandlogo/aston-202943.svg); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+        </div>
+        <div class="col-9">
+            <div class="w-md fs-h3 text-truncate">ASTON MARTIN DB11 V8 4.0</div>
+            <div class="text-truncate fs-normal">ASTON MARTIN</div>
+            <div class="text-truncate fs-normal">Booth : A2</div>
+        </div>
+    </div>
+    <div class="col-12 p-3 p-md-3">
+        <div class="d-flex flex-wrap gap-3">
+            <div class="col-12">
+                <div class="fw-md fs-h4">Price <span class="text-main2">16,990,000</span> THB</div>
+                <div class="fs-small">กรุณาตรวจสอบข้อมูลกับผู้แทนจำหน่ายอีกครั้ง</div>
+            </div>
+            <div class="col-12 d-flex">
+                <div class="col-6">
+                    <div class="fs-h4">Year of Manufacture</div>
+                    <div class="fs-small">ปีที่เริ่มผลิต</div>
+                    <div class="">2020</div>
+                </div>
+                <div class="col-6">
+                    <div class="fs-h4">Body Type</div>
+                    <div class="fs-small">ประเภทรถ</div>
+                    <div class="">Coupe</div>
+                </div>
+            </div>
+        
+            <div class="col-12">
+                <div class="fs-h4">Overview</div>
+                <div class="fs-normal">Aston Martin DB11 V8 ถือเป็นทางเลือกอันโดดเด่น ที่เข้ามา สานต่อความ สำเร็จระดับโลกของตระกูล DB11 อันเป็นที่สุดแห่ง ยนตรกรรม GT ซึ่งเปิดตัวไปเมื่อปี 2016 </div>
+            </div>
+            <div class="col-12">
+                <div class="fs-h4">Specification</div>
+                <div class="fs-small">ข้อมูลจำเพาะ</div>
+                <div class="grid-2 gap-2 mt-2">
+                    <div class="d-flex flex-column gap-1 fs-normal">
+                        <div class="d-flex align-items-center"><div class="wh25 me-2"><%-iconcc%></div><div>ความจุ</div></div>
+                        <div >3982 CC</div>
+                    </div>
+                    <div class="d-flex flex-column gap-1 fs-normal">
+                        <div class="d-flex align-items-center"><div class="wh25 me-2"><%-icongear%></div><div>เกียร์ / จังหวะ</div></div>
+                        <div>A8</div>
+                    </div>
+                    <div class="d-flex flex-column gap-1 fs-normal">
+                        <div class="d-flex align-items-center"><div class="wh25 me-2"><%-iconhp%></div><div>แรงม้า</div></div>
+                        <div>510 HP</div>
+                    </div>
+                    <div class="d-flex flex-column gap-1 fs-normal">
+                        <div class="d-flex align-items-center"><div class="wh25 me-2"><%-icondrive%></div><div>ขับเคลื่อน</div></div>
+                        <div>ขับเคลื่อนล้อหลัง (R)</div>
+                    </div>
+                </div>
+            </div>
+            <% if(carcolors.length){ %>
+            <div class="col-12 d-flex flex-column gap-2">
+                <div class="fs-h4">Colors</div>
+                <div class="col-12 col-lg-6">
+                    <div class="cover">
+                        <div class="img bgcenter" style="padding-bottom: 50%; background-image: url(<%= carcolors[0].image %>);" id="colorpreview"></div>
+                    </div>
+                </div>
+                <div class="fs-h4" id="colorname">
+                    <%= carcolors[0].colorname %>
+                </div>
+                <div class="text-center d-flex flex-wrap gap-2 gap-md-3 hidescroll">
+                    <a class="rounded-circle wh40 wh60-md focus-shadow-scale d-block active" style="background-color: <%= carcolors[0].colorcode %>" onclick="$('#colorpreview').css('background-image','url(<%=carcolors[0].image%>)'); $('#colorname').html('<%=carcolors[0].colorname%>')" focusonlyone></a>
+                    <% carcolors.slice(1).map((e)=>{ %>
+                            <a class="rounded-circle wh40 wh60-md focus-shadow-scale d-block" style="background-color: <%= e.colorcode %>" onclick="$('#colorpreview').css('background-image','url(<%=e.image%>)'); $('#colorname').html('<%=e.colorname%>')" focusonlyone></a>
+                    <% }) %>
+                </div>
+            </div>
+            <% } %>
+            <div class="col-12 d-flex flex-column gap-2">
+                <div class="fs-h4 fw-md">
+                    Catalogue
+                    <div class="fs-small fw-normal">โบชัวร์ ใบราคา แผ่นข้อมูลจำเพาะ</div>
+                </div>
+                <div class="text-center d-flex flex-wrap gap-2 hidescroll fs-h4">
+                    <a href="/app/brochure/p/0" class="col-12 col-md bg-main2 text-white d-flex align-items-center text-decoration-none gap-3 p-3 rounded-3">
+                        <i class="fa-solid fa-newspaper "></i><div>Brochure</div>
+                    </a>
+                    
+                </div>
+            </div>
+            <div class="col-12 d-flex flex-column gap-2">
+                <div class="fs-h4">
+                    Contact
+                    <div class="fs-small fw-normal">ข้อมูลติดต่อ</div>
+                </div>
+                <a href="/app/booth/d/1" class="text-decoration-none d-flex gap-3 bg-main2 text-white p-3 rounded-3">
+                    <div class="d-flex flex-column w-100 fs-normal">
+                        <div class="text-truncate fs-normal">บริษัท แอสตัน มาร์ติน แบงคอก</div>
+                        <div class="text-truncate fs-normal">หมายเลขบูธ : A2</div>
+                        <!-- <div class=""> ข้อมูลผู้ติดต่อ</div> -->
+                        <div class="fs-normal">ชื่อผู้ติดต่อ : สุวรรณ มั่งมี </div>
+                        <div class="fs-normal">เบอร์โทร : 0213123123</div>
+                        <div class="fs-normal">อีเมล : example@gmail.com</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 d-flex flex-column gap-2">
+                <div class="fs-h4">
+                    Sub Model (S)
+                    <div class="fs-small fw-normal">รุ่นย่อย</div>
+                </div>
+                <div>
+                    <ul class="list-unstyled d-flex gap-3 overflow-auto hidescroll">
+                        <%products?.models.map((e,index)=>{
+                            if(index < 3){
+                            %>
+                            <li class="hover-opacity col-8 col-md-5 col-lg-4">
+                                <a href="/app/buyerguide/p/1" class="d-flex flex-column text-decoration-none text-dark">
+                                    <div class="cover col-12">
+                                        <div class="" style="padding-bottom: 50%; background-image: url(<%=e.image%>); background-position: center; background-size: cover; background-repeat: no-repeat;" ></div>
+                                    </div>
+                                    <div class="col info d-flex flex-column pt-2">
+                                        <div class="fs-h4 text-truncate"><%= e.title %></div>
+                                        <div class="fs-normal"><%= e.price %> THB</div>
+                                    </div>
+                                </a>
+                            </li>
+                        <%}})%>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 d-flex flex-column gap-2">
+                <div class="fs-h4">
+                    Promotions
+                    <div class="fs-small fw-normal">โปรโมชัน</div>
+                </div>
+                <div>
+                    <ul class="list-unstyled d-flex gap-3 overflow-auto hidescroll">
+                        <%for(var i = 0; i<=0; i++){%>
+                            <li class="hover-opacity col-8 col-md-5 col-lg-4">
+                                <a href="/app/promotion/p/0" class="d-flex flex-column text-decoration-none text-dark">
+                                    <div class="cover col-12">
+                                        <div class="" style="padding-bottom: 50%; background-image: url(https://www.carzanova.com/images/7CNV_Motor-sport/Aston/AM-1.jpg); background-position: center; background-size: cover; background-repeat: no-repeat;" ></div>
+                                    </div>
+                                    <div class="col info d-flex flex-column pt-2">
+                                        <div class="fs-h4 text-truncate text-break">Aston Martin DB11 V8 พร้อมข้อเสนอพิเศษ สำหรับลูกค้าที่จองภายในงาน</div>
+                                        <div class="fs-normal text-break text-truncate line2">
+                                            อัตราดอกเบี้ยพิเศษ 1.99% สำหรับการจัดไฟแนนซ์ผ่านลีสซิ่งกสิกรไทย
+                                            รับสิทธิ์ผ่อนชำระเงินดาวน์ 0% นานสูงสุด 6 เดือน ผ่านบัตรเครดิตกสิกรไทย
+                                        </div>
+
+                                    </div>
+                                </a>
+                            </li>
+                        <%}%>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% if(!onlydata){%>
+<%- include('../partials/appfooter.ejs') %>
+<% } %>
+

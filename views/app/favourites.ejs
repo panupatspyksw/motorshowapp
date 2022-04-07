@@ -1,0 +1,74 @@
+<%- include('../partials/apphead.ejs') %>
+
+<%
+
+var data=[
+{
+    type:"BUYER'S GUIDE",
+    link:"/app/buyerguide/mt/p/2",
+    title:"GPX DEMON GR 200R",
+    image:"https://www.imc.co.th/img/model/640_2020110619070720.jpg"
+},
+{
+    type:"BUYER'S GUIDE",
+    link:"/app/buyerguide/p/2",
+    title:"ASTON MARTIN DB11 V8 4.0",
+    image:"/cars/astonmartin/640_2020050615054354.jpg"
+},
+{
+    type:"EXHIBITORS",
+    link:"/app/booth/d/0",
+    title:"ASTON MARTIN",
+    image:"https://www.autodeft.com/_uploads/images/DBX_front.jpg"
+},
+{
+    type:"Activities",
+    link:"/app/activity/outdoor/p/0",
+    title:"Jimny Owner Thailand , 106 Never Die และ Flexdream Japan Style",
+    image:"/cover/activity2.jpg"
+}
+]
+
+%>
+<div class="col-12 overflow-scroll d-block bg-white" style="min-height: calc(100vh - 70px);">
+    <div class="text-center w-100 p-5 emptylist d-none">
+        <div class="fs-h2">No favorites are saved at this time</div>
+        <div class="fs-h4 fw-normal">ไม่มีข้อมูลที่ทำการบันทึก ขณะนี้</div>
+        <div class="fs-normal mt-2">
+            สามารถเพิ่มการบันทึกได้โดยการคลิกที่ปุ่มสัญลักษณ์หัวใจในหน้าแสดงข้อมูลรายละเอียดสินค้า ข่าวสาร กิจกรรม หรือโปรโมชัน
+        </div>
+    </div>
+    <div class="grid-md-2 gap-3 p-3">
+        <% data.map((e)=>{%>
+        <div class="col-12 border rounded-3 overflow-hidden position-relative" >
+            <a href="<%=e.link%>" class="d-block" role="button">
+                <div class="cover d-block">
+                    <div class="bg-dark position-relative" style="padding-bottom: 60%;  background-image: url(<%=e.image%>); background-position: center; background-size: cover; background-repeat: no-repeat;">
+                        <div class="position-absolute bottom-0 text-dark w-100 p-3 pt-4 d-grid gap-3 overlaybg">
+                            <div class="text-uppercase lh-fit fs-h4"><span class="bg-main2 px-2 text-white"><%= e.type %></span></div>
+                            <div class="lh-fit fs-h4 text-white text-truncate"><%= e.title %></div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="position-absolute top-0 end-0 text-decoration-none wh50 d-flex justify-content-center align-items-center rounded-circle text-white bg-main2 m-3"  favoritelist role="button">
+            <i class="fa-solid fa-heart"></i></a>
+        </div>
+        <% }) %>
+       
+    </div>
+</div>
+<%- include('../partials/appfooter.ejs') %>
+<script>
+    // $("[favoritelist]").on("click",(evt)=>{
+    //     $(evt.target).parent().remove()
+    // })
+    document.querySelectorAll("[favoritelist]").forEach((element,index)=>{
+        element.addEventListener("click",()=>{
+            $(element).parent().remove()
+            if($("[favoritelist]").length == 0){
+                $(".emptylist").removeClass("d-none")
+            }
+        })
+    })
+</script>

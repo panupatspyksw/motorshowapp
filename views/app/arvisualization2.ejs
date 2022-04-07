@@ -1,0 +1,190 @@
+<%- include('../partials/apphead.ejs') %>
+
+<%
+var carcolor = [
+{
+name:"Rosso Corsa",
+color:"D40000"
+},
+{
+name:"Rosso Mugello",
+color:"7A212A"
+},
+{
+name:"Rosso Fuoco",
+color:"D13442"
+},
+{
+name:"Rosso Dino",
+color:"FC652E"
+},
+{
+name:"Rosso Fiorano",
+color:"5D0001"
+},
+{
+name:"Rosso 70 Anni",
+color:"C40C19"
+},
+{
+name:"Giallo Modena",
+color:"FCE903"
+},
+{
+name:"Grigio Ingrid",
+color:"756D62"
+},
+{
+name:"Grigio Titanio",
+color:"A8B8C0"
+},
+{
+name:"Grigio Silverstone",
+color:"585C64"
+},
+{
+name:"Grigio Ingrid",
+color:"756D62"
+},
+{
+name:"Blu Swaters",
+color:"163166"
+},
+{
+name:"Bianco Avus",
+color:"F2F3F6"
+},
+{
+name:"Argento Nurburgring",
+color:"CACBCE"
+},
+{
+name:"Verde British",
+color:"004225"
+}
+]
+
+var carwheel = [
+{
+name:"California T",
+image:"/app/oldwheelicon.png",
+id:"oldwheel"
+},
+{
+name:"SV-F2 Gloss Graphite",
+image:"/app/newwheelicon.png",
+id:"newwheel"
+}
+]
+
+var boothdetails = [
+{
+    id:"productdetail1",
+    logo: "/logo/kialogo.png",
+    name: "เกีย มอเตอร์ ประเทศไทย",
+    boothno: "B1",
+    challenger: "1",
+    pcategory: "CARS",
+    contactname: "สุพรรณวรรณวง สมเกียรติ",
+    phone:"0832032123",
+    email:"example@gmail.com"
+},
+{
+    id:"productdetail2",
+    logo: "/logo/laminalogo.png",
+    name: "Lamina Films Digital",
+    boothno: "B2",
+    challenger: "1",
+    pcategory: "CARS",
+    contactname: "สุพรรณวรรณวง สมเกียรติ",
+    phone:"0832032123",
+    email:"example@gmail.com"
+},
+{
+    id:"productdetail3",
+    logo: "/logo/porschelogo.png",
+    name: "ปอร์เช่ ประเทศไทย จำกัด",
+    boothno: "A15",
+    challenger: "1",
+    pcategory: "CARS",
+    contactname: "สุพรรณวรรณวง สมเกียรติ",
+    phone:"0832032123",
+    email:"example@gmail.com"
+},
+{
+    id:"productdetail4",
+    logo: "/logo/subarulogo.png",
+    name: "Subaru Thailand Co.,Ltd.",
+    boothno: "A16",
+    challenger: "1",
+    pcategory: "CARS",
+    contactname: "สุพรรณวรรณวง สมเกียรติ",
+    phone:"0832032123",
+    email:"example@gmail.com"
+}
+]
+
+%>
+
+<div id="webgl" class="w-100" style="height: calc(100vh - 70px); "></div>
+<div id="webcssrender" class="position-absolute left-0 w-100 pe-none" style="top:70px; height: calc(100vh - 70px); "></div>
+<div id="toolbar" class="position-absolute pe-none bg-white left-0 w-100 shadow-lg" style="opacity: 0; bottom: -70px;">
+    <div class="position-relative w-100 ">
+        <a closetoolbar role="button" class="pe-auto fs-icon text-main2 position-absolute text-decoration-none shadow-lg start-50 translate-middle d-block bg-white rounded-circle wh70 d-flex align-items-center justify-content-center" style="top: -50px;"><i class="fa-solid fa-xmark"></i></a>
+    </div>
+    <% boothdetails.map((e)=>{%> 
+    <div id="<%= e.id %>" menucontainer class="d-none">
+        <div class="col-12 d-flex align-items-center border-bottom p-3 p-md-3">
+            <div class="wh80 wh90-md me-2 me-md-3">
+                <div style="padding-bottom: 100%; background-image: url(<%=e.logo%>); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+            </div>
+            <div class="col-9">
+                <div class="text-truncate fs-h3"><%= e.name %></div>
+            </div>
+        </div>
+        <div class="col-12 p-3 p-md-3">
+            <div class="d-flex flex-wrap gap-3">
+                <div class="col-12 d-flex flex-column">
+                    <div class="col-12 d-flex">
+                        <div class="col-6 fs-h4">Booth No. :</div>
+                        <div class="col-6 fs-h4 fw-normal"><%= e.boothno %></div>
+                    </div>
+                    <div class="col-12 d-flex">
+                        <div class="col-6 fs-h4 ">Challenger :</div>
+                        <div class="col-6 fs-h4 fw-normal"><%= e.challenger %></div>
+                    </div>
+                    <div class="col-12 d-flex">
+                        <div class="col-6 fs-h4 ">Product Category :</div>
+                        <div class="col-6 fs-h4 fw-normal"><%= e.pcategory %></div>
+                    </div>
+                  
+                </div>
+                <div class="col-12 d-flex flex-column gap-2">
+                    <div class="fs-h4">Contact</div>
+                    <div href="/app/booth/dd" class="text-decoration-none d-flex gap-3 rounded-3">
+                        <div class="d-flex flex-column w-100 fs-normal">
+                            <!-- <div class=""> ข้อมูลผู้ติดต่อ</div> -->
+                            <div class="">ชื่อผู้ติดต่อ : <%= e.contactname %> </div>
+                            <div class="">เบอร์โทร : <%= e.phone %></div>
+                            <div class="">อีเมล : <%= e.email %></div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/app/booth/d/0" class="pe-auto col-12 col-md bg-main2 text-white d-flex align-items-center justify-content-center fs-h4 text-decoration-none gap-3 p-3 rounded-3">
+                    <div>อ่านต่อ</div>
+                 </a>
+            </div>
+        </div>
+    </div>
+    <% }) %>
+</div>
+
+
+
+<script type="importmap">{
+    "imports": {
+        "three": "/js/three/build/three.module.js"
+    }
+}</script>
+<script src="/js/three/ar2.js" type="module"></script>
+<%- include('../partials/appfooter.ejs') %>

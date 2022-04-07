@@ -1,0 +1,200 @@
+<%- include('../partials/apphead.ejs') %>
+
+<%
+var carcolor = [
+{
+name:"Rosso Corsa",
+color:"D40000"
+},
+{
+name:"Rosso Mugello",
+color:"7A212A"
+},
+{
+name:"Rosso Fuoco",
+color:"D13442"
+},
+{
+name:"Rosso Dino",
+color:"FC652E"
+},
+{
+name:"Rosso Fiorano",
+color:"5D0001"
+},
+{
+name:"Rosso 70 Anni",
+color:"C40C19"
+},
+{
+name:"Giallo Modena",
+color:"FCE903"
+},
+{
+name:"Grigio Ingrid",
+color:"756D62"
+},
+{
+name:"Grigio Titanio",
+color:"A8B8C0"
+},
+{
+name:"Grigio Silverstone",
+color:"585C64"
+},
+{
+name:"Grigio Ingrid",
+color:"756D62"
+},
+{
+name:"Blu Swaters",
+color:"163166"
+},
+{
+name:"Bianco Avus",
+color:"F2F3F6"
+},
+{
+name:"Argento Nurburgring",
+color:"CACBCE"
+},
+{
+name:"Verde British",
+color:"004225"
+}
+]
+
+var carwheel = [
+{
+name:"California T",
+image:"/app/oldwheelicon.png",
+id:"oldwheel"
+},
+{
+name:"SV-F2 Gloss Graphite",
+image:"/app/newwheelicon.png",
+id:"newwheel"
+}
+]
+
+%>
+
+<div id="webgl" class="w-100" style="height: calc(100vh - 70px); "></div>
+<div id="webcssrender" class="position-absolute left-0 w-100 pe-none" style="top:70px; height: calc(100vh - 70px); "></div>
+<div id="toolbar" class="position-absolute pe-none bg-white left-0 w-100 shadow-lg" style="opacity: 0; bottom: -70px;">
+    <div class="position-relative w-100 ">
+        <a closetoolbar role="button" class="pe-auto fs-icon text-main2 position-absolute text-decoration-none shadow-lg start-50 translate-middle d-block bg-white rounded-circle wh70 d-flex align-items-center justify-content-center" style="top: -50px;"><i class="fa-solid fa-xmark"></i></a>
+    </div>
+    <div id="productdetail" menucontainer class="d-none">
+        <div class="col-12 d-flex align-items-center border-bottom p-3 p-md-3">
+            <div class="wh80 wh90-md me-2 me-md-3">
+                <div style="padding-bottom: 100%; background-image: url(https://thumbs.dreamstime.com/b/web-183281416.jpg); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
+
+                
+            </div>
+            <div class="col-9">
+                <div class="w-md fs-h3 text-truncate">FERRARI J50 </div>
+                <div class="text-truncate fs-normal">บริษัท Cavallino Motors Co. Ltd</div>
+                <div class="text-truncate fs-normal">Booth : A10</div>
+            </div>
+        </div>
+        <div class="col-12 p-3 p-md-3">
+            <div class="d-flex flex-wrap gap-3">
+                <div class="col-12">
+                    <div class="fw-md fs-h4">Price <span class="text-main2">112,541,000 </span> THB</div>
+                    <div class="fs-small">กรุณาตรวจสอบข้อมูลกับผู้แทนจำหน่ายอีกครั้ง</div>
+                </div>
+                <div class="col-12 d-flex">
+                    <div class="col-6">
+                        <div class="fs-h4">Year of Manufacture</div>
+                        <div class="fs-small">ปีที่เริ่มผลิต</div>
+                        <div class="">2016</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="fs-h4">Body Type</div>
+                        <div class="fs-small">ประเภทรถ</div>
+                        <div class="">Sport</div>
+                    </div>
+                </div>
+                <a href="/app/buyerguide/p/1" class="pe-auto col-12 col-md bg-main2 text-white d-flex align-items-center justify-content-center fs-h4 text-decoration-none gap-3 p-3 rounded-3">
+                   <div>อ่านต่อ</div>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="colorpicker" menucontainer class="d-flex d-none flex-nowrap w-100 overflow-auto hidescroll pe-auto">
+        <div class="d-flex gap-3 p-3 pb-5"> 
+            <% carcolor.map((e,index)=>{ %> 
+                <!-- <div class="w70 d-flex flex-column align-items-center justify-content-start text-center gap-2"> -->
+                    <a class="text-decoration-none text-dark wh70 d-block rounded-circle focus-shadow-scale position-relative text-center <%= index == 0 ? 'active' : '' %>" style="background-color: #<%= e.color; %>" focusonlyone colorpicker>
+                    <div class="text-truncate line2 w-100 fs-xsmall position-absolute d-flex align-items-center h30" style="bottom: -35px;"> 
+                        <%= e.name; %>
+                    </div>
+                    </a>
+                <!-- </div> -->
+            <% }) %>
+        </div>
+    </div>
+    <div id="wheelpicker" menucontainer class="d-flex d-none flex-nowrap w-100 overflow-auto hidescroll pe-auto">
+        <div class="d-flex gap-3 p-3 pb-5"> 
+            <% carwheel.map((e,index)=>{ %> 
+                <!-- <div class="w70 d-flex flex-column align-items-center justify-content-start text-center gap-2"> -->
+                    <a class="text-decoration-none text-dark wh70 d-block rounded-circle focus-shadow-scale position-relative text-center <%= index == 0 ? 'active' : '' %>" id="<%=e.id%>" style="background: url(<%= e.image; %>); background-size:cover;" focusonlyone wheelpicker>
+                    <div class="text-truncate line2 w-100 fs-xsmall position-absolute d-flex align-items-center h30" style="bottom: -35px;"> 
+                        <%= e.name; %>
+                    </div>
+                    </a>
+                <!-- </div> -->
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+<div id="xraycarinfo" class="d-block d-none position-absolute top-0 left-0 w-100 h-100 overflow-auto hidescroll bg-white px-3 pb-3" style="opacity: 0; transform: translateY(20%); z-index: 10;">
+    <div class="d-flex justify-content-between align-items-center border-bottom py-3">
+        <div class=" fs-h1 text-uppercase " titleinfo>POWER STAGE </div>
+        <a role="button" closexraycarinfo class="box fs-icon-md text-decoration-none text-main2">
+            <i class="fa-solid fa-circle-xmark "></i>
+        </a>
+    </div>
+    <div class="d-flex d-none flex-column gap-3 pt-3 overflow-auto" id="content1" xrayinfocontainer>
+        <div class="col-12 col-lg-9 mx-auto">
+            <div class="img" style="background-image: url(/cover/alp_6086.webp); background-size: cover; padding-bottom: 50%;"></div>
+        </div>
+        <div class="fs-h4" >V8 Twin-Turbocharged</div>
+        <div >
+            Ferrari F154 เป็นตระกูล เครื่องยนต์เบนซิน twin-turbocharged เทคโนโลยี direct injected V8 ออกแบบและผลิตโดยเฟอร์รารีมาตั้งแต่ปี 2013 โดยจะเข้ามาแทนที่เฟอร์รารี/มาเซราติ F136 V8 ตระกูล V8 ที่ใช้เครื่องยนต์ประจุอากาศด้วยตนเองในรถยนต์ ทั้งมาเซราติและเฟอร์รารี เครื่องยนต์เหล่านี้เป็นเครื่องยนต์ของเฟอร์รารีที่ติดตั้งเทอร์โบชาร์จเป็นครั้งแรกนับตั้งแต่ปี 1987 
+            ที่ใช้พื้นฐานและเครื่องยนต์จากรุ่น Stellar 488 Spider ความจุเครื่อง 3.9 ลิตร V8 Twin-Turbocharged แต่ปรับแต่งเพิ่มแรงม้าจาก 661 แรงม้าเป็น 680 แรงม้า
+        </div>
+    </div>
+    <div class="d-flex d-none flex-column gap-3 pt-3 overflow-auto" id="content2" xrayinfocontainer>
+        <div class="col-12 col-lg-9 mx-auto">
+            <div class="img" style="background-image: url(/cover/front.jpg); background-size: cover; padding-bottom: 50%;"></div>
+        </div>
+        <div class="fs-h4" >The Novitec Power Stage 3</div>
+        <div >
+            Novitec Power Stage 3 Ferrari J50 ประกอบด้วยช่องลมคาร์บอนที่ปรับการไหลของอากาศให้เหมาะสม รวมถึงตัวกรองอากาศแบบสปอร์ตสองตัว เช่นเดียวกับเครื่องยนต์อิเล็กทรอนิกส์ที่ปรับแต่งใหม่พร้อมกลุ่มโค้งที่ได้รับการปรับแต่งและความเร็วตัดสูงขึ้นเป็น 8.850 รอบต่อนาที (ตามนั้นจึงสูงกว่า) ความเร็วปลาย) การสลับการควบคุมแผ่นพับที่ Manettino ในพวงมาลัย        </div>
+    </div>
+    <div class="d-flex d-none flex-column gap-3 pt-3 overflow-auto" id="content3" xrayinfocontainer>
+        <div class="col-12 col-lg-7 mx-auto">
+            <div class="img" style="background-image: url(/cover/break.jpeg); background-size: cover; padding-bottom: 70%;"></div>
+        </div>
+        <div class="fs-h4" >STi Brake Caliper</div>
+        <div >
+            คาลิเปอร์อะลูมิเนียม จากแบรนด์ Brembo ผู้ผลิตคาลิปเปอร์เบรกไฮเทค - 
+            คาลิปเปอร์เป็นส่วนหนึ่งของระบบดิสก์เบรก ซึ่งเป็นแบบที่รถยนต์ส่วนใหญ่มีอยู่ในเบรกหน้า ก้ามปูเบรกประกอบด้วยผ้าเบรกและลูกสูบในรถยนต์ของคุณ หน้าที่ของมันคือทำให้ล้อรถช้าลงโดยสร้างแรงเสียดทานกับจานเบรก
+        </div>
+    </div>
+    
+
+</div>
+
+
+<script type="importmap">{
+    "imports": {
+        "three": "/js/three/build/three.module.js"
+    }
+}</script>
+<script src="/js/three/ar.js" type="module"></script>
+<%- include('../partials/appfooter.ejs') %>

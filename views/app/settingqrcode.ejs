@@ -1,0 +1,61 @@
+<%- include('../partials/apphead.ejs') %>
+
+<div class="bg-white w-100" style="min-height: calc(100vh - 70px);">
+    <div class="d-flex col-lg-7 col-xl-6 mx-auto justify-content-center flex-column align-items-center p-3 bg-white gap-3">
+        <div class="ticket w-100 border p-3 rounded-3">
+            <div class="d-flex gap-3 align-items-center">
+                <div class="date text-center">
+                    <div class="fs-h4">12</div>
+                    <div class="fs-h4 text-danger lh-1">DEC</div>
+                </div>
+                <div class="info d-flex flex-column">
+                    <div class="fs-normal fw-md">
+                        MOTOR EXPO 2022 - งานมหกรรมยานยนต์ (รอบสาธารณะชน)
+                    </div>
+                    <div class="fs-normal text-secondary">
+                        สำหรับคุณ พงษ์สันติ วัฒนะวิชัยพัฒน์
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex gap-3 mt-3">
+                <a role="button" class="col bg-main2 text-white text-center align-items-center text-decoration-none gap-3 px-2 px-md-3 py-2 rounded-3" setqrcode>
+                    <div class="fs-normal pe-none">Set as front QRCode</div>
+                </a>
+                <a href="/app/mytickets/view/t/1" class="col bg-main2 text-white text-center align-items-center text-decoration-none gap-3 px-2 px-md-3 py-2 rounded-3">
+                    <div class="fs-normal pe-none">View Ticket</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="ticket w-100 border p-3 rounded-3">
+            <div class="d-flex gap-3 align-items-center">
+                <div class="date text-center">
+                    <div class="fs-h4">13</div>
+                    <div class="fs-h4 text-danger lh-1">DEC</div>
+                </div>
+                <div class="info d-flex flex-column">
+                    <div class="fs-normal fw-md">
+                        MOTOR EXPO 2022 - งานมหกรรมยานยนต์ (รอบสาธารณะชน)
+                    </div>
+                    <div class="fs-normal text-secondary">
+                        สำหรับคุณ พงษ์สันติ วัฒนะวิชัยพัฒน์
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex gap-3 mt-3">
+                <a role="button" class="col bg-main2 text-white text-center align-items-center text-decoration-none gap-3 px-2 px-md-3 py-2 rounded-3" setqrcode>
+                    <div class="fs-normal pe-none">Set as front QRCode</div>
+                </a>
+                <a href="/app/mytickets/view/t/1" class="col bg-main2 text-white text-center align-items-center text-decoration-none gap-3 px-2 px-md-3 py-2 rounded-3">
+                    <div class="fs-normal pe-none">View Ticket</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="position-absolute p-3 d-flex align-items-center bg-success w-100 text-white h60" style="bottom: -60px;">
+    Ticket has been set as front QRCode
+</div> -->
+<script src="/js/ticket.js"></script>
+<%- include('../partials/appfooter.ejs') %>

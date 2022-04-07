@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/dependencies.ejs') %>
+    <title>TIME - Motor Show App Prototype</title>
+</head>
+<body>
+    <div class="container-xxl d-flex flex-column gap-3 justify-content-center  p-5 shadow min-vh-100 position-relative bg-main4 overflow-hidden" style="background-image: url(/cover/appbackground.jpg); background-size: cover; background-repeat: no-repeat; background-position: top;" id="appcontainer">
+        <div class="col-12 col-md-9 col-lg-5 d-flex flex-column gap-3 mx-auto p-5">
+        <img src="/app/logo_white.svg" class="img-fluid" alt="">
+        </div>
+        <div class="mt-5 mt-md-5 col-12 col-md-9 col-lg-5 d-flex flex-column gap-3 mx-auto">
+            <div class="fs-icon text-white text-start w-100">
+                Sign Up
+            </div>
+            <a href="/app/home" class="col-12 col-md text-white d-flex align-items-center text-decoration-none gap-3 p-3 rounded-3 fs-h4" style="background-color: #224A9F;">
+                <img src="/app/facebook.svg" alt=""><div>Sign up with Facebook</div>
+            </a>
+            <a href="/app/home" class="col-12 col-md bg-white text-dark d-flex align-items-center text-decoration-none gap-3 p-3 rounded-3 fs-h4">
+                <img src="/app/gmail.svg" alt=""><div>Sign up with Gmail</div>
+            </a>
+            <a href="/app/login" class="col-12 justify-content-center text-dark d-flex align-items-center text-decoration-none text-white fs-h4 fw-normal" href="">Already have an account?  <span class="fw-md ms-2">Sign in</span> </a>
+        </div>
+
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<%- include('../partials/apphead.ejs') %>
+
+
+<div class="bg-white w-100" style="min-height: calc(100vh - 70px);">
+
+<div class="row">
+    <div class="col-12 ">
+        <div class="bg-white ">
+            <ul class="list-unstyled row">
+                <div class="col-12  p-3 fs-h2 text-uppercase">
+                    <%=table.carbrand%>
+                </div>
+                <%table.models.map((e,i)=>{%>
+                    <li class="hover-opacity col-12 col-md-6 col-lg-4">
+                        <a href="<%=path%>/<%=i%>" class="d-flex flex-column border p-3 text-decoration-none text-dark" >
+                            <div class="cover col-12">
+                                <div class="" style="padding-bottom: 50%; background-image: url(<%=e.image%>); background-position: center; background-size: cover; background-repeat: no-repeat;" ></div>
+                            </div>
+                            <div class="col info d-flex flex-column">
+                                <div class="fs-h4 pt-2 text-uppercase"><%= e.title %></div>
+                                <div class="fs-normal"><%= e.price %> THB</div>
+                            </div>
+                        </a>
+                    </li>
+                <%})%>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<%- include('../partials/appfooter.ejs') %>

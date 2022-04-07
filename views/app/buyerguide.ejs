@@ -1,0 +1,60 @@
+<%- include('../partials/apphead.ejs') %>
+
+<div class="row w-100">
+    <div class="col-12 col-md">
+        <div class="cover d-block">
+            <div class="bg-dark position-relative" style="padding-bottom: 60%;  background-image: url(/cover/carcoverbuyyerguide.jpg); background-position: center; background-size: contain; background-repeat: no-repeat;">
+                <div class="position-absolute bottom-0 text-white w-100 p-3 d-grid gap-2">
+                    <div class="text-uppercase lh-fit fs-h2">Cars</div>
+                    <div class="lh-fit fs-small">สเปค การออกแบบ ราคา โบรชัวร์ ตารางราคา โปรโมชัน บูธที่จัดแสดง ของรถยนต์</div>
+                    <a href="/app/buyerguide/car/brand" class="fs-h4 text-white text-decoration-none bg-main2 rounded-3 d-block p-2 text-center">BROWSE BY BRAND</a>
+                    <a href="/app/buyerguide/car/bodystyle" class="fs-h4 text-white text-decoration-none bg-main2 rounded-3 d-block p-2 text-center">BROWSE BY BODY STYLE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md ps-lg-0">
+        <div class="cover d-block">
+            <div class="bg-dark position-relative" style="padding-bottom: 60%;  background-image: url(/cover/motorcyclebuyyerguidecover.jpg); background-position: center; background-size: contain; background-repeat: no-repeat;">
+                <div class="position-absolute bottom-0 text-white w-100 p-3 d-grid gap-2">
+                    <div class="text-uppercase lh-fit fs-h2">Motorcycles</div>
+                    <div class="lh-fit fs-small">สเปค การออกแบบ ราคา โบรชัวร์ ตารางราคา โปรโมชัน บูธที่จัดแสดง ของจักรยานยนต์</div>
+                    <a href="/app/buyerguide/motorcycle/brand" class="fs-h4 text-white text-decoration-none bg-main2 rounded-3 d-block p-2 text-center">BROWSE BY BRAND</a>
+                    <a href="/app/buyerguide/motorcycle/bodystyle" class="fs-h4 text-white text-decoration-none bg-main2 rounded-3 d-block p-2 text-center">BROWSE BY BODY STYLE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>
+<div class="row">
+    <div class="col-12 ">
+        <div class="bg-white d-grid gap-3">
+            <div class="lh-fit px-3 px-lg-3 pt-3 fs-h2">RECENTLY VIEWED VEHICLES</div>
+            <ul class="list-unstyled">
+                <%products?.models.map((e,index)=>{%>
+                <li>
+                    <div class="d-flex align-items-center border p-3 text-decoration-none text-dark ">
+                        <a href="/app/buyerguide/p/1" class="d-flex align-items-center w-100 text-decoration-none text-dark" role="button" href="d-block text-decoration-none text-dark">
+                        <div class="cover col-3 col-md-2 me-2 me-lg-3 ">
+                            <div class="" style="padding-bottom: 50%; background-image: url(<%=e.image%>); background-position: center; background-size: cover; background-repeat: no-repeat;" ></div>
+                        </div>
+                        <div class="col info d-flex flex-column">
+                            <div class="fs-h4 text-truncate"><%= e.title %></div>
+                            <div class="fs-normal"><%= e.price %> THB</div>
+                        </div>
+                        </a>
+                        <div class="d-flex px-2 px-lg-3">
+                            <button class="fs-h1 btn btn-link btnicon text-main3 shadow-none px-0 me-2 me-lg-3 saved"><i class="fa-solid fa-heart"></i></button>
+                            <button class="fs-h1 btn btn-link btnicon text-main2 shadow-none px-0 pe-auto" onclick="$(this).parent().parent().remove()"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                </li>
+                <%})%>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<%- include('../partials/appfooter.ejs') %>

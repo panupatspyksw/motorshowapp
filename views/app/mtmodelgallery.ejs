@@ -1,0 +1,38 @@
+
+<%- include('../partials/apphead.ejs') %>
+<%
+var exterior = [
+"https://www.greatbiker.com/wp-content/uploads/2020/06/gr200r-1-1.jpg"
+,"https://www.9carthai.com/wp-content/uploads/2022/01/GPX-DEMON-GR200R-2.jpg"
+,"https://www.bigbikeinfo.com/wp-content/uploads/GPX-Demon-GR200R-DaCorsa-%E0%B9%84%E0%B8%9F%E0%B8%97%E0%B9%89%E0%B8%B2%E0%B8%A2.jpg"
+,"https://img.icarcdn.com/autospinn/body/042495_JUj2s8PIskHlLFFkVjEFGF.jpg"
+]
+
+var interior = [
+"https://www.bigbikeinfo.com/wp-content/uploads/GPX-Demon-GR200R-DaCorsa-%E0%B8%81%E0%B8%A3%E0%B8%B2%E0%B8%9F%E0%B8%B4%E0%B8%81%E0%B8%94%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%87.jpg"
+,"http://auto.mthai.com/app/uploads/2016/11/Demon-150-GN-2-600x401.jpg"
+,"https://www.motocrossmag.co.th/main/wp-content/uploads/2020/06/13-Final_GPX_S11-%E0%B8%96%E0%B8%B1%E0%B8%87%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%A1%E0%B8%B1%E0%B8%99.jpg"
+,"http://auto.mthai.com/app/uploads/2016/11/Demon-150-GN-6-600x401.jpg"
+]
+%>
+<div class="col-12 bg-white overflow-hidden position-relative" slider-wrapper>
+    <div class="d-flex row position-fixed container-xxl bg-white" style="z-index: 1;" slider-pagination>
+        <div class="col p-3 text-center border-bottom border-5 border-secondary border-hover active fs-h2 " focusonlyone role="button">Exterior</div>
+        <div class="col p-3 text-center border-bottom border-5 border-secondary border-hover fs-h2 " focusonlyone role="button">Interior</div>
+    </div>
+    <div class="header"></div>
+    <div class="d-flex" slider-pages>
+        <div class="col-12 grid-2 p-3 gap-3 align-self-start" page="1" slider-page gallery-slider title="exterior">
+            <% exterior.map((e)=>{%>
+            <div role="button" class="image bg-dark col-12" style="padding-bottom: 50%; background-image:url(<%=e%>); background-size:cover; background-repeat:no-repeat; background-position:center;" slider-page></div>
+            <%})%>
+        </div>
+        <div class="col-12 grid-2 p-3 gap-3 align-self-start" page="2" slider-page gallery-slider title="interior">
+            <% interior.map((e)=>{%>
+                <div role="button" class="image bg-dark col-12" style="padding-bottom: 50%; background-image:url(<%=e%>); background-size:cover; background-repeat:no-repeat; background-position:center;" slider-page></div>
+                <%})%> 
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/appfooter.ejs') %>

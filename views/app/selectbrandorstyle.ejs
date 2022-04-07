@@ -1,0 +1,27 @@
+<%- include('../partials/apphead.ejs') %>
+<%
+var table
+%>
+<div class="row">
+    <div class="col-12 ">
+        <div class="bg-white ">
+            <ul class="list-unstyled">
+                <% table?.map((e,i)=>{ %>
+                    <li class="hover-opacity">
+                        <a href="<%=path + i %>" class="d-flex align-items-center border p-2 p-md-3 text-decoration-none text-dark">
+                            <div class="col info d-flex flex-column">
+                                <div class="fs-h4 text-uppercase"><%= e.title %></div>
+                            </div>
+                            <div class="cover col-2 col-md-2 col-lg-1">
+                                <div class="" style="padding-bottom: 100%; background-image: url(<%=e.image%>); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+                            </div>
+                        </a>
+              
+                    </li>
+                <%})%>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/appfooter.ejs') %>

@@ -1,0 +1,46 @@
+<%- include('../partials/apphead.ejs') %>
+
+<div class="bg-white w-100" style="min-height: calc(100vh - 70px);">
+
+<div class="col-12 bg-white overflow-hidden position-relative" slider-wrapper>
+    <div class="d-flex row position-fixed container-xxl bg-white h70" style="z-index: 1;" slider-pagination>
+        <% table.headpage.map((e)=>{%> 
+        <div class="col p-3 text-center text-uppercase border-bottom border-5 border-secondary border-hover <%= e.first ? 'active' : '' %> fs-h2 " focusonlyone role="button"><%=e.title%></div>
+        <% }) %>
+    </div>
+    <div class="header"></div>
+    <div class="d-flex" slider-pages>
+        <% table.gridtype.map((e,index)=>{%> 
+        <div class="col-12 <%=e%>  align-self-start" slider-page title="<%=table.headpage[index].title%>">
+            <% table.content[index].map((e,i)=>{%>
+            <a href="<%=table.path[index]%><%=i%>" role="button" class="image col-12 text-decoration-none text-dark ">
+                <div class="cover pe-none">
+                    <div class="bg-dark img" style="padding-bottom:50%; background-image: url(<%=e.image%>); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+                </div>
+                <div class="info overflow-hidden col-12 d-block  d-flex flex-column  pe-none user-select-none">
+                    <div class="fs-h4 text-truncate fw-md title"><%= e.title %></div>
+                    <div class="fs-small text-truncate line2 des"><%= e.short %></div>
+                    <div class="fs-small  date"><%= e.date %></div>
+                </div>
+            </a>
+            <% }) %>
+<!-- 
+            <div role="button" class="image bg-danger col-12" style="padding-bottom: 50%" slider-page></div>
+            <div role="button" class="image bg-danger col-12" style="padding-bottom: 50%" slider-page></div>
+            <div role="button" class="image bg-danger col-12" style="padding-bottom: 50%" slider-page></div> -->
+            <!-- <div role="button" class="image bg-danger col-12" style="padding-bottom: 50%" slider-page></div> -->
+        </div>
+        <% }) %>
+        <!-- <div class="col-12 grid-2 p-3 gap-3 align-self-start" page="2" slider-page gallery-slider title="interior">
+                <div role="button" class="image bg-danger col-12" style="padding-bottom: 50%" slider-page></div>
+                <div role="button" class="image bg-primary col-12" style="padding-bottom: 50%" slider-page></div>   
+                 <div role="button" class="image bg-warning col-12" style="padding-bottom: 50%" slider-page></div> 
+                 <div role="button" class="image bg-danger col-12" style="padding-bottom: 50%" slider-page></div>   
+                 <div role="button" class="image bg-warning col-12" style="padding-bottom: 50%" slider-page></div> 
+                 <div role="button" class="image bg-danger col-12" style="padding-bottom: 50%" slider-page></div>  
+        </div> -->
+    </div>
+</div>
+
+</div>
+<%- include('../partials/appfooter.ejs') %>
