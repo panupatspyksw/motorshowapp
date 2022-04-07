@@ -58,6 +58,8 @@
 }
 body{
     min-height: 100vh;
+    height: -webkit-fill-available;
+
 }
 .header{
     height: 70px;

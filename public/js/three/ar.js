@@ -357,7 +357,7 @@ function toolbaropen(container){
     $("[menucontainer]").not(container).addClass("d-none")
 
     $(container).removeClass("d-none")
-    tbtl.to("#toolbar",{bottom: 0, opacity: 1,duration: .3})
+    tbtl.to("#toolbar",{bottom: "0%", opacity: 1,duration: .3})
 }
 function toolbarclose(){
     tbtl.to("#toolbar",{bottom: "-70px", opacity: 0,duration: .3,onComplete:()=>{
