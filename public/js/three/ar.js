@@ -369,10 +369,10 @@ function xraycarinfoopen(container,title){
     $("[xrayinfocontainer]").not(container).addClass("d-none")
     $(container).removeClass("d-none")
     $("#xraycarinfo").removeClass("d-none")
-    tbtl.to("#xraycarinfo",{bottom: 0, y:"0" ,opacity: 1,duration: .5})
+    tbtl.to("#xraycarinfo",{bottom: 0 ,opacity: 1,duration: .5})
 }
 function xraycarinfoclose(){
-    xrtl.to("#xraycarinfo",{ opacity: 0, y:"20%",duration: .5,onComplete:()=>{
+    xrtl.to("#xraycarinfo",{ opacity: 0,duration: .5,onComplete:()=>{
         $("#xraycarinfo").addClass("d-none")
     }})
 }
