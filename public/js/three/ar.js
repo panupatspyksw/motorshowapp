@@ -415,6 +415,10 @@ $("[closetoolbar]").on("click",()=>{
     xraytl.reverse(-1)
     xraytl.reversed(true);
     var l = false;
+    spotsxray.map((e)=>{
+        e.visible = l;
+    })
+
     $("[startxray]").on("click",()=>{
         
         xraytl.reversed(!xraytl.reversed());
