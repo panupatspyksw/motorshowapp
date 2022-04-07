@@ -360,7 +360,7 @@ function toolbaropen(container){
     tbtl.to("#toolbar",{bottom: "0%", opacity: 1,duration: .3})
 }
 function toolbarclose(){
-    tbtl.to("#toolbar",{bottom: "-70px", opacity: 0,duration: .3,onComplete:()=>{
+    tbtl.to("#toolbar",{bottom: "0%", opacity: 0,duration: .3,onComplete:()=>{
         $("[menucontainer]").addClass("d-none")
     }})
 }
@@ -369,7 +369,7 @@ function xraycarinfoopen(container,title){
     $("[xrayinfocontainer]").not(container).addClass("d-none")
     $(container).removeClass("d-none")
     $("#xraycarinfo").removeClass("d-none")
-    tbtl.to("#xraycarinfo",{bottom: 0 ,opacity: 1,duration: .5})
+    tbtl.to("#xraycarinfo",{opacity: 1,duration: .5})
 }
 function xraycarinfoclose(){
     xrtl.to("#xraycarinfo",{ opacity: 0,duration: .5,onComplete:()=>{
