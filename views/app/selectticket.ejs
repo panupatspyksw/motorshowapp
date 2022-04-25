@@ -11,9 +11,9 @@
                 <div class="fs-h4">Tickets</div>
                 <hr class="m-0 p-0 mt-3">
             </div>
-            <form action="/app/mytickets//buymore/process" method="post" id="form" class="d-flex flex-column  bg-white gap-3">
+            <form action="/app/mytickets/buymore/process" method="post" id="form" class="d-flex flex-column  bg-white ">
                 <%for(var i = 0; i < 4; i++){%>
-                <div  class="ticket border-bottom p-3 rounded-3">
+                <div  class="ticket border-bottom px-1 py-3 rounded-3">
                     <div class="d-flex gap-3 align-items-center">
                         <div class="date text-center">
                             <div class="fs-h4"><%= 13+i %></div>
@@ -40,11 +40,15 @@
                 </div>
                 <% } %>
                 <div>
-                    <button class="border-0 w-100 d-flex justify-content-center col bg-main2 text-white text-center align-items-center text-decoration-none gap-3 px-2 px-md-3 py-2 rounded-3 " style="opacity: 0.7;"  disabled>
-                        <div class="wh30 fill-white">
+                   
+                    <button href="/app/mytickets/buymore/selectticket" class="d-flex justify-content-start btn text-start col-12 bg-mainr text-white align-items-start text-decoration-none gap-2 px-3 px-md-3 py-2 rounded-3">
+                        <div class="wh40 fill-white">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 23" fill="none"><path d="M5.11111 7.93514H17.8889V15.5251H5.11111V7.93514ZM21.0833 11.7301C21.0833 12.7781 21.9414 13.6276 23 13.6276V17.4226C23 18.4706 22.1419 19.3201 21.0833 19.3201H1.91667C0.858108 19.3201 0 18.4706 0 17.4226V13.6276C1.05856 13.6276 1.91667 12.7781 1.91667 11.7301C1.91667 10.6822 1.05856 9.83264 0 9.83264V6.03764C0 4.98966 0.858108 4.14014 1.91667 4.14014H21.0833C22.1419 4.14014 23 4.98966 23 6.03764V9.83264C21.9414 9.83264 21.0833 10.6822 21.0833 11.7301ZM19.1667 7.61889C19.1667 7.0949 18.7376 6.67014 18.2083 6.67014H4.79167C4.26239 6.67014 3.83333 7.0949 3.83333 7.61889V15.8414C3.83333 16.3654 4.26239 16.7901 4.79167 16.7901H18.2083C18.7376 16.7901 19.1667 16.3654 19.1667 15.8414V7.61889Z" /></svg>
                         </div>
-                        <div class="fs-h4 pe-none">Buy Tickets</div>
+                        <div class="fs-h4 pe-none d-flex flex-column">
+                            Buy Tickets
+                            <div class="fs-small fw-normal">ซื้อตั๋วลงทะเบียนร่วมงาน</div>
+                        </div>
                     </button>
                 </div>
             </form>

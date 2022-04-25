@@ -21,24 +21,24 @@
     /* font-weight: 500; */
 }
 .fs-h1{
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 500;
 }
 .fs-h2{
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 500;
 }
 .fs-h3{
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 500;
 }
 .fs-h4{
-    font-size: 1.03rem;
+    font-size: 1.15rem;
     font-weight: 500;
 }
 
 .fs-normal{
-    font-size: 0.9rem;
+    font-size: 1.01rem;
 }
 
 .fs-small{
@@ -47,7 +47,8 @@
 
 
 .fs-xsmall{
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+    white-space: nowrap!important;
 }
 
 
@@ -97,19 +98,33 @@ body{
 background: linear-gradient(0deg, rgba(47,71,107,1) 0%, rgba(47,71,107,0) 100%);
 }
 :root {
-    --color-m1: #2F476B;
+    /* --color-m1: #2F476B;
     --color-m2: #4F76B1;
     --color-m3: #95ADD1;
     --color-m4: #DBE3EE;
     --color-m5: #2F476B;
     --color-m6: #383838;
+    --color-m7: #FFFFFF; */
+
+    --color-m1: #041F42;
+    --color-m2: #2A7ECC;
+    --color-m3: #95ADD1;
+    --color-m4: #D2D2D2;
+    --color-m5: #2F476B;
+    --color-m6: #383838;
     --color-m7: #FFFFFF;
+    --color-red: #EF1042;
+    --color-hili: #0CE2FF;
 }
 p ~ ul {
     background: #ff0000;
   }
 .lh-fit{
     line-height: 1;
+}
+.bg-blug-g{
+    background: rgb(42,126,204)!important;
+background: linear-gradient(0deg, rgba(42,126,204,0.19793855042016806) 0%, rgba(42,126,204,1) 100%)!important;
 }
 .bg-main{
     background-color: var(--color-m1);
@@ -121,17 +136,26 @@ p ~ ul {
     background-color: var(--color-m3);
 }
 .bg-main4{
-    background-color: var(--color-m4);
+    /* background-color: var(--color-m4); */
 }
 .bg-main5{
     background-color: var(--color-m5);
 }
+.bg-mainr{
+    background-color: var(--color-red);
+}
 /* text color setting */
+.text-mainr{
+    color: var(--color-red)!important;
+}
 .text-main{
     color: var(--color-m1)!important;
 }
 .text-main2{
     color: var(--color-m2)!important;
+}
+.text-hili{
+    color: var(--color-hili)!important;
 }
 .text-main3{
     color: var(--color-m3)!important;
@@ -323,8 +347,8 @@ svg{
 
 .app-btn-gray{
     display: block;
-    border: solid 1px #979797;
-    color: #979797;
+    border: solid 1px #fff;
+    color: #fff;
     background-color: transparent;
     border-radius: 5px;
     text-decoration: none;
@@ -336,23 +360,23 @@ svg{
     border: solid 1px #979797;
 }
 .app-btn-gray svg path,.app-btn-gray svg rect{
-    fill: #979797;
+    fill: #fff;
     transition: all .3s;
 }
 .app-btn-gray svg path[stroke-width]{
-    stroke: #979797;
+    stroke: #fff;
     transition: all .3s;
 }
 .app-btn-gray:hover svg path,.app-btn-gray:hover svg rect{
-    fill: #fff;
+    fill: var(--color-m2);
 }
 .app-btn-gray:hover svg path[stroke-width]{
-    stroke: #fff;
+    stroke: var(--color-m2);
 }
 .app-btn-gray:hover{
-    border: solid 1px var(--color-m2);
-    color: white;
-    background-color: var(--color-m2);
+    border: solid 1px var(--color-m7);
+    color: var(--color-m2);
+    background-color: var(--color-m7);
 }
 
 .fw-md{
@@ -402,12 +426,24 @@ svg{
     transition: none!important;
 }
 .saved{
-    color: var(--color-m3)!important;
-    transition: color .3s;
+    color: rgb(116, 116, 116)!important;
+    transition: color .2s , opacity .3s;
+    opacity: 1;
     cursor: pointer;
 }
 .saved:hover, .saved.active{
-    color: var(--color-m2)!important;
+    opacity: 1;
+    color: var(--color-red)!important;
+}
+.rounded-circle.saved{
+    color: rgb(116, 116, 116)!important;
+    transition: color .2s , opacity .3s;
+    opacity: 1;
+    cursor: pointer;
+}
+.rounded-circle.saved:hover,.rounded-circle.saved.active{
+    color: white!important;
+    background-color: var(--color-red)!important;
 }
 .border-hover{
     border-color: var(--color-m3)!important;
@@ -420,7 +456,7 @@ svg{
 }
 
 .hover-bgmain2{
-    background-color: transparent;
+    background-color: white;
     color: var(--color-m2);
     border: solid 1px var(--color-m2);
     transition: all .3s;
@@ -428,7 +464,8 @@ svg{
     /* stroke: var(--color-m2); */
 }
 .hover-bgmain2:hover,.hover-bgmain2.active{
-    background-color: var(--color-m2);
+    border: solid 1px var(--color-red);
+    background-color: var(--color-red);
     color: white;
     fill: white;
 }
@@ -437,7 +474,7 @@ svg{
     stroke: var(--color-m2);
 }
 .hover-bgmain2:hover [stroke-width],.hover-bgmain2.active [stroke-width]{
-    fill: var(--color-m2);
+    fill: var(--color-red);
     stroke: white;
 
 }
@@ -575,7 +612,7 @@ grid-template-columns: repeat(2, 1fr);
         font-size: 1rem;
     }
     .fs-h4{
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 500;
     }
     .fs-menu{
@@ -583,7 +620,7 @@ grid-template-columns: repeat(2, 1fr);
         font-weight: 500;
     }
     .fs-h1{
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
     .wh25-md{
         width: 25px;
@@ -681,6 +718,49 @@ grid-template-columns: repeat(2, 1fr);
         font-size: 1.4rem;
         font-weight: 500;
     }
+    /* fontsize */
+.fs-menu{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.fs-icon{
+    font-size: 2.5rem;
+    /* font-weight: 500; */
+}
+.fs-icon-md{
+    font-size: 2rem;
+    /* font-weight: 500; */
+}
+.fs-h1{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.fs-h2{
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+.fs-h3{
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+.fs-h4{
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.fs-normal{
+    font-size: 1.1rem;
+}
+
+.fs-small{
+    font-size: 0.95rem;
+}
+
+
+.fs-xsmall{
+    font-size: 0.9rem;
+    white-space: nowrap!important;
+}
 }
 
 /* // XX-Large devices (larger desktops, 1400px and up) */
@@ -694,7 +774,8 @@ grid-template-columns: repeat(2, 1fr);
 
 
 .qrcode{
-    opacity: 0.75;
+    opacity: 1;
+    filter: -webkit-filter: grayscale(1) invert(1); filter: grayscale(1) invert(1);
     padding-bottom: 100%;
     background: url(/app/qrcode.png);
     background-size: cover;

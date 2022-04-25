@@ -39,8 +39,12 @@ router.get('/home',(req,res)=>{
 })
 
 router.get('/favorites',(req,res)=>{
-    res.render("app/favourites",{title:"Favourites"})
+    res.render("app/favouritescategory",{title:"Favorites Category"})
 })
+router.get('/favorites/list',(req,res)=>{
+    res.render("app/favourites",{title:"Favorites"})
+})
+
 
 
 router.get('/',(req,res)=>{

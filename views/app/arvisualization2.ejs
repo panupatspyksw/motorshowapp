@@ -128,13 +128,13 @@ var boothdetails = [
 
 <div id="webgl" class="w-100" style="height: calc(100vh - 70px); "></div>
 <div id="webcssrender" class="position-absolute left-0 w-100 pe-none" style="top:70px; height: calc(100vh - 70px); "></div>
-<div id="toolbar" class="position-absolute pe-none bg-white left-0 w-100 shadow-lg" style="opacity: 0; bottom: -70px;">
+<div id="toolbar" class="position-absolute pe-none bg-main text-white left-0 w-100 shadow-lg" style="opacity: 0; bottom: -70px;">
     <div class="position-relative w-100 ">
         <a closetoolbar role="button" class="pe-auto fs-icon text-main2 position-absolute text-decoration-none shadow-lg start-50 translate-middle d-block bg-white rounded-circle wh70 d-flex align-items-center justify-content-center" style="top: -50px;"><i class="fa-solid fa-xmark"></i></a>
     </div>
     <% boothdetails.map((e)=>{%> 
     <div id="<%= e.id %>" menucontainer class="d-none">
-        <div class="col-12 d-flex align-items-center border-bottom p-3 p-md-3">
+        <div class="col-12 d-flex align-items-center bg-white text-dark border-bottom p-3 p-md-3">
             <div class="wh80 wh90-md me-2 me-md-3">
                 <div style="padding-bottom: 100%; background-image: url(<%=e.logo%>); background-position: center; background-size: contain; background-repeat: no-repeat;"></div>
             </div>
@@ -146,16 +146,16 @@ var boothdetails = [
             <div class="d-flex flex-wrap gap-3">
                 <div class="col-12 d-flex flex-column">
                     <div class="col-12 d-flex">
-                        <div class="col-6 fs-h4">Booth No. :</div>
-                        <div class="col-6 fs-h4 fw-normal"><%= e.boothno %></div>
+                        <div class="col-6 col-md-4 fs-h4">Booth No. :</div>
+                        <div class="col-6 fs-h4 fw-md text-hili"><%= e.boothno %></div>
                     </div>
                     <div class="col-12 d-flex">
-                        <div class="col-6 fs-h4 ">Challenger :</div>
-                        <div class="col-6 fs-h4 fw-normal"><%= e.challenger %></div>
+                        <div class="col-6 col-md-4 fs-h4 ">Challenger :</div>
+                        <div class="col-6 fs-h4 fw-md text-hili"><%= e.challenger %></div>
                     </div>
                     <div class="col-12 d-flex">
-                        <div class="col-6 fs-h4 ">Product Category :</div>
-                        <div class="col-6 fs-h4 fw-normal"><%= e.pcategory %></div>
+                        <div class="col-6 col-md-4 fs-h4 ">Product Category :</div>
+                        <div class="col-6 fs-h4 fw-md text-hili"><%= e.pcategory %></div>
                     </div>
                   
                 </div>
@@ -170,9 +170,14 @@ var boothdetails = [
                         </div>
                     </div>
                 </div>
-                <a href="/app/booth/d/0" class="pe-auto col-12 col-md bg-main2 text-white d-flex align-items-center justify-content-center fs-h4 text-decoration-none gap-3 p-3 rounded-3">
+                <!-- <a href="/app/booth/d/0" class="pe-auto col-12 col-md bg-main2 text-white d-flex align-items-center justify-content-center fs-h4 text-decoration-none gap-3 p-3 rounded-3">
                     <div>อ่านต่อ</div>
-                 </a>
+                 </a> -->
+                 <a href="/app/booth/d/0" type="button" class="mt-2 border-0 justify-content-center col-12 bg-mainr text-white text-center align-items-center text-decoration-none pe-auto gap-3 px-2  py-1 rounded-3 " >
+                    <div class="fs-h2 pe-none">More                      
+                        <div class="fs-normal fw-normal">อ่านเพิ่มเติม</div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

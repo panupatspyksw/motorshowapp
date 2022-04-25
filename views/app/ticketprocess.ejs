@@ -136,25 +136,25 @@
                         <div>
                             <label for="basic-url" class="form-label">Card Number</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Card Number">
+                                <input type="text" class="form-control" placeholder="Card Number" name="dd">
                             </div>
                         </div>
                         <div>
                             <label for="basic-url" class="form-label">Card Name</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Card Name">
+                                <input type="text" class="form-control" placeholder="Card Name" name="dd">
                             </div>
                         </div>
                         <div>
                             <label for="basic-url" class="form-label">Expiry Date</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="xx/xx">
+                                <input type="text" name="dd" class="form-control" placeholder="xx/xx">
                             </div>
                         </div>
                         <div>
                             <label for="basic-url" class="form-label">CVV</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" placeholder="CVV">
+                                <input type="password" name="dd" class="form-control" placeholder="CVV">
                             </div>
                         </div>
                         <div class=" d-flex align-items-center gap-2 mt-3">
@@ -163,10 +163,7 @@
                         </div>
                     </div>
                 </a>
-                <a role="button" class="paymentmethode2 d-flex flex-wrap gap-3 align-items-center text-decoration-none text-dark border p-3 rounded-3">
-                    <img class="wh30" src="/payment/Rectangle 143.svg">
-                    <div class="fs-h4 fw-normal">SCB EASY APP</div>
-                </a>
+                
                 <a role="button" class="paymentmethode2 d-flex flex-wrap gap-3 align-items-center text-decoration-none text-dark border p-3 rounded-3">
                     <img class="wh30" src="/payment/uil_qrcode-scan.svg">
                     <div class="fs-h4 fw-normal">QR Payment</div>
@@ -175,14 +172,34 @@
                     <img class="wh30" src="/payment/ps_bar-code.svg">
                     <div class="fs-h4 fw-normal">Bill Payment</div>
                 </a>
+                <a role="button" class="paymentmethode2 d-flex flex-wrap gap-3 align-items-center text-decoration-none text-dark border p-3 rounded-3">
+                    <img class="wh30" src="https://cutewallpaper.org/21/paypal-logo-transparent-background/Download-Free-png-PayPal-Donate-Button-Free-PNG-Image-.png">
+                    <div class="fs-h4 fw-normal">PAYPAL</div>
+                </a>
                 
+                <a role="button" class="paymentmethode2 d-flex flex-wrap gap-3 align-items-center text-decoration-none text-dark border p-3 rounded-3">
+                    <img class="wh30" src="/payment/Rectangle 143.svg">
+                    <div class="fs-h4 fw-normal">SCB EASY APP</div>
+                </a>
+                <a role="button" class="paymentmethode2 d-flex flex-wrap gap-3 align-items-center text-decoration-none text-dark border p-3 rounded-3">
+                    <img class="wh30" src="https://play-lh.googleusercontent.com/5cnnA8lEdsdpLLT1hxUVFkDE6JX-JOW7SQWL-mmvSlH1eYjG-SNYgSrZzrMpYC3mQCM">
+                    <div class="fs-h4 fw-normal">TTB TOUCH</div>
+                </a>
+                <a role="button" class="paymentmethode2 d-flex flex-wrap gap-3 align-items-center text-decoration-none text-dark border p-3 rounded-3">
+                    <img class="wh30" src="https://play-lh.googleusercontent.com/AyX675vwNz8X2sYUTSrjUTRVzzXMZUW_nMQ8Vk__Nabj6zQ7s7We-bpZbFmoYf7e2YM">
+                    <div class="fs-h4 fw-normal">K PLUS</div>
+                </a>
             </div>
             <div>
-                <button class="mt-3 border-0 w-100 d-flex justify-content-center col bg-green text-white text-center align-items-center text-decoration-none gap-3 px-2 px-md-3 py-2 rounded-3 " style="opacity: 0.7;"  disabled submitstage1>
-                    <div class="fs-h4 pe-none">Confirm</div>
+                <button class="mt-3 border-0 w-100 justify-content-center col bg-green text-white text-center align-items-center text-decoration-none gap-3 px-2 px-md-3 py-2 rounded-3 " style="opacity: 0.7;"  disabled submitstage1>
+                    <div class="fs-h4 pe-none">Confirm
+                        <div class="fs-small fw-normal">ยืนยันออเดอร์</div>
+                    </div>
                 </button>
-                <a href="/app/mytickets/buymore/selectticket" type="button" class="mt-2 border-0 w-100 d-flex justify-content-center col bg-secondary text-white text-center align-items-center text-decoration-none gap-3 px-2 px-md-3 py-2 rounded-3 " >
-                    <div class="fs-h4 pe-none">Cancel This Order</div>
+                <a href="/app/mytickets/buymore/selectticket" type="button" class="mt-2 border-0 w-100 justify-content-center col bg-secondary text-white text-center align-items-center text-decoration-none gap-3 px-2 px-md-3 py-2 rounded-3 " >
+                    <div class="fs-h4 pe-none">Cancel Order                        
+                        <div class="fs-small fw-normal">ยกเลิกออเดอร์</div>
+                </div>
                 </a>
             </div>
         </div>
@@ -202,11 +219,10 @@
             <div class="fs-normal">You have completed registration.</div>
             <div class="fs-normal">The organizer will send detail of the event and the way to participate via the email you registered</div>
         </div>
-        <a href="/app/mytickets" class="d-flex w-100 justify-content-center col bg-main2 text-white text-center align-items-center text-decoration-none gap-3 px-2 px-md-3 py-2 rounded-3">
-            <div class="wh30 fill-white">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 23" fill="none"><path d="M5.11111 7.93514H17.8889V15.5251H5.11111V7.93514ZM21.0833 11.7301C21.0833 12.7781 21.9414 13.6276 23 13.6276V17.4226C23 18.4706 22.1419 19.3201 21.0833 19.3201H1.91667C0.858108 19.3201 0 18.4706 0 17.4226V13.6276C1.05856 13.6276 1.91667 12.7781 1.91667 11.7301C1.91667 10.6822 1.05856 9.83264 0 9.83264V6.03764C0 4.98966 0.858108 4.14014 1.91667 4.14014H21.0833C22.1419 4.14014 23 4.98966 23 6.03764V9.83264C21.9414 9.83264 21.0833 10.6822 21.0833 11.7301ZM19.1667 7.61889C19.1667 7.0949 18.7376 6.67014 18.2083 6.67014H4.79167C4.26239 6.67014 3.83333 7.0949 3.83333 7.61889V15.8414C3.83333 16.3654 4.26239 16.7901 4.79167 16.7901H18.2083C18.7376 16.7901 19.1667 16.3654 19.1667 15.8414V7.61889Z" /></svg>
-            </div>
-            <div class="fs-h4 pe-none">View My Tickets</div>
+        <a href="/app/mytickets" type="button" class="mt-2 border-0 w-100 justify-content-center col bg-mainr text-white text-center align-items-center text-decoration-none gap-3 px-2 px-md-3 py-2 rounded-3 " >
+            <div class="fs-h4 pe-none">View My Tickets                      
+                <div class="fs-small fw-normal">กลับไปหน้ารายการตั๋วของคุณ</div>
+        </div>
         </a>
     </div>
 </div>
@@ -295,7 +311,7 @@ $("[submitstage1]").on("click",()=>{
         tosection("#section2")
         $("[submitstage1]").html("Confirm")
         $("[section2]").removeClass("d-none")
-        $("[submitstage1]").html("Place Order")
+        $("[submitstage1]").html(`Place Order<div class="fs-small fw-normal">ยืนยันออเดอร์</div>`)
         $("[submitstage1]").off()
         $("[submitstage1]").on("click",()=>{
             tosection("#section3")

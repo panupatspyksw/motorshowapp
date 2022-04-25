@@ -34,10 +34,10 @@ $(document).ready(()=>{
                                 ${slides}
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center position-absolute top-50 start-50 translate-middle pe-none">
-                                <a class="d-block d-flex align-items-center justify-content-center text-decoration-none bg-main2 text-white fs-4 wh50 pe-auto" role="button" back-button>
+                                <a class="d-block d-flex align-items-center justify-content-center text-decoration-none  text-white fs-4 wh50 pe-auto" role="button" back-button>
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </a>
-                                <a class="d-block d-flex align-items-center justify-content-center text-decoration-none bg-main2 text-white fs-4 wh50 pe-auto" role="button" next-button>
+                                <a class="d-block d-flex align-items-center justify-content-center text-decoration-none  text-white fs-4 wh50 pe-auto" role="button" next-button>
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </a>
                             </div>

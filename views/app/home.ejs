@@ -85,22 +85,22 @@ var menus =
     ]
 %>
 %>
-    <div class="row p-0 m-0 w-100">
+    <div class="row p-0 m-0 w-100 bg-main">
         <div class="col-12 col-lg p-3 p-lg-5">
             <div class="cover shadow rounded-3 bg-white overflow-hidden">
-                <div class="" style="padding-bottom: 50%; background-image: url(/cover/homecover.jpg); background-position: center; background-size: cover; background-repeat: no-repeat;" ></div>
+                <div class="" style="padding-bottom: 50%; background-image: url(/cover/homecover2.jpg); background-position: center; background-size: cover; background-repeat: no-repeat;" ></div>
                 <div class="p-3">
                     <ul class="list-unstyled">
-                        <li class="fs-normal fw-md">
-                            <i class="fas fa-calendar wh30 text-center "></i>
+                        <li class="fs-normal">
+                            <i class="fas fa-calendar text-main2 wh30 fs-h3 text-center "></i>
                             December 1-16, 2022
                         </li>
                         <li class="fs-normal">
-                            <i class="fas fa-clock wh30 text-center"></i>
+                            <i class="fas fa-clock text-main2 wh30 fs-h3 text-center"></i>
                             จันทร์ - ศุกร์ 12.00 - 22:00 น.
                         </li>
                         <li class="fs-normal">
-                            <i class="fas fa-map-marker-alt wh30 text-center"></i>
+                            <i class="fas fa-map-marker-alt text-main2 wh30 fs-h3 text-center"></i>
                             IMPACT Challenger 1-3 เมืองทองธานี
                         </li>
                     </ul>
@@ -110,8 +110,9 @@ var menus =
         </div>
         <div class="col-12 col-lg row p-lg-5 ps-lg-0">
             <div class="cover col-12">
-                <a href="/app/buyerguide" class="bg-dark position-relative d-block" style="padding-bottom: 50%; background: url(/cover/cover.jpg); background-size: cover;">
+                <a href="/app/buyerguide" class="bg-dark position-relative d-block" style="padding-bottom: 60%; background: url(/cover/buyyerguidecover.jpg); background-size: cover;">
                     <div class="position-absolute top-50 start-50 translate-middle text-decoration-none text-white text-center">
+                        <img src="/logo/searcg.svg" class="mb-3" alt="">
                         <div class="fs-h2">BUYER’S GUIDE</div>
                         <div class="fs-normal">ค้นหารถใหม่ให้เราช่วยคุณ</div>
                     </div>
@@ -119,7 +120,7 @@ var menus =
             </div>
             <div class="col-12 grid-2 gap-3 px-3 pt-3 px-lg-0 ">
                 <%menus.map((e)=>{%>
-                    <a href="<%=e.link%>" class="app-btn p-3">
+                    <a href="<%=e.link%>" class="app-btn bg-blug-g p-3">
                         <div class="wh40 pb-1 fill-white text-start ">
                             <%-e.svg%>
                         </div>

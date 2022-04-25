@@ -6,32 +6,24 @@ var data=[
 {
     type:"BUYER'S GUIDE",
     link:"/app/buyerguide/mt/p/2",
-    title:"GPX DEMON GR 200R",
+    title:"2 posts",
     image:"https://www.imc.co.th/img/model/640_2020110619070720.jpg"
 },
 {
-    type:"BUYER'S GUIDE",
-    link:"/app/buyerguide/p/2",
-    title:"ASTON MARTIN DB11 V8 4.0",
-    image:"/cars/astonmartin/640_2020050615054354.jpg"
-}
-
-]
-
-%>
-<!-- ,
-{
     type:"EXHIBITORS",
     link:"/app/booth/d/0",
-    title:"ASTON MARTIN",
+    title:"1 post",
     image:"https://www.autodeft.com/_uploads/images/DBX_front.jpg"
 },
 {
     type:"Activities",
     link:"/app/activity/outdoor/p/0",
-    title:"Jimny Owner Thailand , 106 Never Die และ Flexdream Japan Style",
+    title:"1 post",
     image:"/cover/activity2.jpg"
-} -->
+}
+]
+
+%>
 <div class="col-12 overflow-scroll d-block bg-white" style="min-height: calc(100vh - 70px);">
     <div class="text-center w-100 p-5 emptylist d-none">
         <div class="fs-h2">No favorites are saved at this time</div>
@@ -43,7 +35,7 @@ var data=[
     <div class="grid-md-2 gap-3 p-3">
         <% data.map((e)=>{%>
         <div class="col-12 border rounded-3 overflow-hidden position-relative" >
-            <a href="<%=e.link%>" class="d-block" role="button">
+            <a href="/app/favorites/list" class="d-block" role="button">
                 <div class="cover d-block">
                     <div class="bg-dark position-relative" style="padding-bottom: 60%;  background-image: url(<%=e.image%>); background-position: center; background-size: cover; background-repeat: no-repeat;">
                         <div class="position-absolute bottom-0 text-dark w-100 p-3 pt-4 d-grid gap-3 overlaybg">
@@ -53,8 +45,7 @@ var data=[
                     </div>
                 </div>
             </a>
-            <a class="position-absolute top-0 end-0 text-decoration-none wh50 d-flex justify-content-center align-items-center rounded-circle text-white bg-mainr m-3"  favoritelist role="button">
-            <i class="fa-solid fa-heart"></i></a>
+           
         </div>
         <% }) %>
        

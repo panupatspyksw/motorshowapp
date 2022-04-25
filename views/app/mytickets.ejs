@@ -1,8 +1,8 @@
 <%- include('../partials/apphead.ejs') %>
-<div class="bg-white w-100" style="min-height: calc(100vh - 70px);">
-<div class="d-flex col-lg-7 col-xl-6 mx-auto justify-content-center flex-column align-items-center p-3 bg-white gap-2">
-    <div class="w-100 border-g d-flex rounded-3 flex-column justify-content-center align-items-center text-center bg-white gap-2 p-3">
-        <div class="fs-h4">บัตรเข้างานของคุณ</div>
+<div class="bg-main w-100" style="min-height: calc(100vh - 70px);">
+<div class="d-flex col-lg-7 col-xl-6 mx-auto justify-content-center flex-column align-items-center p-3 bg-main text-white gap-2">
+    <div class="w-100 border-white border d-flex rounded-3 flex-column justify-content-center align-items-center text-center bg-main gap-4 p-4">
+        <div class="fs-h2">บัตรเข้างานของคุณ</div>
         <div class="col-7 col-md-5">
             <div class="qrcode"></div>
         </div>
@@ -13,9 +13,10 @@
         <div class="fs-normal">
             พงษ์สันติ วัฒนะวิชัยพัฒน์
         </div>
-        <a href="/app/mytickets/settingqrcode" role="button" class="col-12 col-md bg-main2 text-white align-items-center text-decoration-none gap-3 p-3 lh-1 text-center rounded-3">
+        <!-- <a href="/app/mytickets/settingqrcode" role="button" class="col-12 col-md bg-mainr text-white align-items-center text-decoration-none gap-3 p-3 lh-1 text-center rounded-3">
           Setting QRCode
-        </a>
+        </a> -->
+        <a href="/app/mytickets/settingqrcode" class="col-12 col-md fs-h4 text-white text-decoration-none bg-mainr rounded-3 d-block p-1 text-center">Setting QRCode<div class="fw-normal fs-normal">เปลี่ยน QRCODE </div></a>
     </div>
     <a href="/app/mytickets/view" class="text-decoration-none w-100 app-btn-gray d-flex align-items-center gap-2">
         <div class="wh30">
